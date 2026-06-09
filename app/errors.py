@@ -9,3 +9,7 @@ class UnsupportedFileTypeError(IngestionError):
 
 class FileTooLargeError(IngestionError):
     pass
+
+
+class OcrNotAvailableError(IngestionError):
+    pass

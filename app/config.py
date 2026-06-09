@@ -33,6 +33,10 @@ class Settings(BaseSettings):
     max_upload_mb: int = 25
     allowed_extensions: set[str] = {".pdf", ".docx", ".doc", ".txt", ".png", ".jpg", ".jpeg"}
 
+    # Parsing
+    vision_model: str = "gpt-4o-mini"   # multimodal model for scans/handwriting (use gpt-4o for tougher handwriting)
+    pdf_text_min_chars: int = 20        # a page below this many chars is treated as scanned -> vision OCR
+
     @property
     def is_prod(self) -> bool:
         return self.environment.lower() == "prod"

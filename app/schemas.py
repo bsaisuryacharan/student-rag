@@ -35,9 +35,22 @@ class DocumentRecord(BaseModel):
     storage_path: str
     status: DocumentStatus = DocumentStatus.uploaded
     upload_date: datetime
+    page_count: int | None = None
 
 class UploadResponse(BaseModel):
     document_id: str
     document_name: str
     status: DocumentStatus
     size_bytes: int
+
+class PageUnit(BaseModel):
+    page: int
+    text: str
+    chapter_hint: str | None = None
+
+
+class ParsedDocument(BaseModel):
+    document_id: str
+    document_name: str
+    subject: str | None = None
+    pages: list[PageUnit]

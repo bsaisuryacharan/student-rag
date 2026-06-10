@@ -10,7 +10,8 @@ router = APIRouter(tags=["search"])
 @router.post("/search", response_model=SearchResponse)
 async def search(request: Request, body: SearchRequest):
     service = RetrievalService(
-        request.app.state.settings, request.app.state.openai, request.app.state.vector_store)
+        request.app.state.settings, request.app.state.openai,
+        request.app.state.vector_store, request.app.state.sparse_encoder)
     results = await service.search(
         body.query, body.top_k,
         subject=body.subject, document_id=body.document_id, chapter=body.chapter)

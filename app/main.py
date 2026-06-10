@@ -17,8 +17,12 @@ from app.storage import LocalStorage
 from app.api.ingestion import router as documents_router
 
 from app.store.qdrant_store import VectorStore
+from app.embedding.sparse import SparseEncoder
 
 from app.api.search import router as search_router
+
+from app.api.ask import router as ask_router
+
 
 logger = logging.getLogger("app")
 
@@ -31,7 +35,8 @@ async def lifespan(app: FastAPI):
     app.state.openai = build_openai_client(settings)
     app.state.vector_store = VectorStore(app.state.qdrant, settings)
     app.state.storage = LocalStorage(settings.data_dir)
-    app.include_router(search_router, prefix="/v1")
+    # Loaded once at startup: the BM25 model download/initialization is too slow to do per-request
+    app.state.sparse_encoder = SparseEncoder(settings.sparse_model)
     logger.info("Startup complete (env=%s)", settings.environment)
     try:
         yield
@@ -66,6 +71,8 @@ def create_app() -> FastAPI:
 
     app.include_router(system_router, prefix="/v1")
     app.include_router(documents_router, prefix="/v1")
+    app.include_router(search_router, prefix="/v1")
+    app.include_router(ask_router, prefix="/v1")
     return app
 
 app = create_app()

@@ -1,4 +1,5 @@
 # app/embedding/service.py
+import asyncio
 import logging
 from pathlib import Path
 
@@ -13,12 +14,13 @@ logger = logging.getLogger("app.embedding")
 
 
 class EmbeddingService:
-    def __init__(self, settings: Settings, openai: AsyncOpenAI,
-                 vector_store: VectorStore, ingestion: IngestionService) -> None:
+
+    def __init__(self, settings, openai, vector_store, ingestion, sparse_encoder) -> None:
         self.settings = settings
         self.openai = openai
         self.store = vector_store
         self.ingestion = ingestion
+        self.sparse = sparse_encoder
 
 
     # The _embed_texts method is responsible for generating vector embeddings for a list of input texts using the OpenAI API. It processes the texts in batches, as specified by the embed_batch_size configuration, to optimize the embedding generation process. The method returns a list of vector embeddings corresponding to the input texts, which can then be used for storage and retrieval in the vector database.
@@ -45,11 +47,14 @@ class EmbeddingService:
             raise ValueError("No chunks to embed")
 
         await self.store.ensure_collection()
-        vectors = await self._embed_texts([c.text for c in chunked.chunks])
+        texts = [c.text for c in chunked.chunks]
+        vectors = await self._embed_texts(texts)
         if vectors and len(vectors[0]) != self.settings.embedding_dim:
             raise ValueError(f"Embedding dim {len(vectors[0])} != configured {self.settings.embedding_dim}")
+        # Sparse (BM25) encoding is CPU-bound; run it in a thread so the event loop isn't blocked
+        sparse_vectors = await asyncio.to_thread(self.sparse.encode, texts)
 
-        await self.store.upsert(document_id, chunked.chunks, vectors)
+        await self.store.upsert(document_id, chunked.chunks, vectors, sparse_vectors)
         record.status = DocumentStatus.embedded
         self.ingestion.save_record(record)
         logger.info("Embedded %s: %d chunks", document_id, len(chunked.chunks))

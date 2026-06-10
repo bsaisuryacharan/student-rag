@@ -7,7 +7,7 @@ from app.schemas import ParsedDocument
 from app.chunking.service import ChunkingService
 from app.schemas import ChunkedDocument
 
-from app.errors import UnsupportedFileTypeError, FileTooLargeError
+from app.errors import UnsupportedFileTypeError, FileTooLargeError, DuplicateDocumentError
 from app.ingestion.service import IngestionService
 from app.schemas import UploadResponse, DocumentRecord
 from app.embedding.service import EmbeddingService
@@ -40,6 +40,8 @@ async def upload_document(
         raise HTTPException(status_code=415, detail=str(e))
     except FileTooLargeError as e:
         raise HTTPException(status_code=413, detail=str(e))
+    except DuplicateDocumentError as e:
+        raise HTTPException(status_code=409, detail=str(e))
     finally:
         # Ensure file handle is always closed, even on error
         await file.close()
@@ -48,6 +50,12 @@ async def upload_document(
         document_id=record.document_id, document_name=record.document_name,
         status=record.status, size_bytes=record.size_bytes,
     )
+
+# Endpoint to list all documents that have been uploaded to the system. It scans the stored manifests and returns the full DocumentRecord for each document (id, name, subject, size, status, upload date, etc.), sorted by upload date with the most recent first.
+@router.get("", response_model=list[DocumentRecord])
+async def list_documents(request: Request):
+    service = IngestionService(request.app.state.settings, request.app.state.storage)
+    return service.list_all()
 
 @router.get("/{document_id}", response_model=DocumentRecord)
 async def get_document(request: Request, document_id: str):
@@ -110,7 +118,7 @@ async def embed_document(request: Request, document_id: str):
     ingestion = IngestionService(request.app.state.settings, request.app.state.storage)
     service = EmbeddingService(
         request.app.state.settings, request.app.state.openai,
-        request.app.state.vector_store, ingestion)
+        request.app.state.vector_store, ingestion, request.app.state.sparse_encoder)
     try:
         n = await service.embed_document(document_id)
     except FileNotFoundError:

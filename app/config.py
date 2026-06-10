@@ -45,6 +45,14 @@ class Settings(BaseSettings):
     retrieval_top_k: int = 5
     retrieval_min_score: float | None = None   # optional cosine cutoff to drop weak matches
 
+    # Generation
+    generation_temperature: float = 0.1
+    max_context_chars: int = 16000      # safety cap on prompt size
+
+    # Hybrid / sparse
+    sparse_model: str = "Qdrant/bm25"
+    hybrid_prefetch_limit: int = 20    # candidates fetched per branch (dense/sparse) before RRF fusion
+
     @property
     def is_prod(self) -> bool:
         return self.environment.lower() == "prod"

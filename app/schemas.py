@@ -85,3 +85,28 @@ class SearchRequest(BaseModel):
 class SearchResponse(BaseModel):
     query: str
     results: list[RetrievedChunk]
+
+class AskRequest(BaseModel):
+    question: str
+    top_k: int | None = None
+    subject: str | None = None
+    document_id: str | None = None
+    chapter: str | None = None
+
+    model_config = {"json_schema_extra": {"example": {"question": "What is the invoice date?"}}}
+
+
+class Citation(BaseModel):
+    index: int
+    document_name: str | None = None
+    page: int | None = None
+    chapter: str | None = None
+    document_id: str | None = None
+    chunk_id: str | None = None
+    score: float
+
+
+class AnswerResponse(BaseModel):
+    question: str
+    answer: str
+    citations: list[Citation]

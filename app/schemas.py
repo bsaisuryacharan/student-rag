@@ -18,6 +18,13 @@ class Chunk(BaseModel):
     text: str
     metadata: ChunkMetadata
 
+
+class ChunkedDocument(BaseModel):
+    document_id: str
+    document_name: str
+    subject: str | None = None
+    chunks: list[Chunk]
+
 class DocumentStatus(str, Enum):
     uploaded = "uploaded"
     parsed = "parsed"

@@ -4,6 +4,8 @@ from fastapi import APIRouter, UploadFile, File, Form, Request, HTTPException, s
 from pathlib import Path
 from app.parsing.service import ParsingService
 from app.schemas import ParsedDocument
+from app.chunking.service import ChunkingService
+from app.schemas import ChunkedDocument
 
 from app.errors import UnsupportedFileTypeError, FileTooLargeError
 from app.ingestion.service import IngestionService
@@ -76,3 +78,26 @@ async def get_parsed(request: Request, document_id: str):
     if not p.exists():
         raise HTTPException(status_code=404, detail="Parsed content not found")
     return ParsedDocument.model_validate_json(p.read_text(encoding="utf-8"))
+
+
+# Endpoint to trigger chunking of a parsed document. It retrieves the document record and checks if the document has been parsed. If the parsed content exists, it uses the ChunkingService to create chunks from the parsed document and saves the chunks as a JSON file. The document status is updated to "chunked". If the document is not found or if the document has not been parsed yet, appropriate HTTP errors are returned.
+@router.post("/{document_id}/chunk")
+async def chunk_document(request: Request, document_id: str):
+    ingestion = IngestionService(request.app.state.settings, request.app.state.storage)
+    service = ChunkingService(request.app.state.settings, ingestion)
+    try:
+        chunked = service.chunk(document_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Document not found")
+    except ValueError as e:
+        raise HTTPException(status_code=409, detail=str(e))   # parse it first
+    return {"document_id": document_id, "status": "chunked", "chunks": len(chunked.chunks)}
+
+
+# Endpoint to retrieve the chunks of a document. It checks if the chunks JSON file exists for the given document ID, and if it does, it reads and returns the chunked content as a ChunkedDocument object. If the chunks are not found, it returns a 404 error.
+@router.get("/{document_id}/chunks", response_model=ChunkedDocument)
+async def get_chunks(request: Request, document_id: str):
+    p = Path(request.app.state.settings.data_dir) / "raw" / document_id / "chunks.json"
+    if not p.exists():
+        raise HTTPException(status_code=404, detail="Chunks not found")
+    return ChunkedDocument.model_validate_json(p.read_text(encoding="utf-8"))

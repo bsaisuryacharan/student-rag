@@ -10,6 +10,7 @@ from app.schemas import ChunkedDocument
 from app.errors import UnsupportedFileTypeError, FileTooLargeError
 from app.ingestion.service import IngestionService
 from app.schemas import UploadResponse, DocumentRecord
+from app.embedding.service import EmbeddingService
 
 logger = logging.getLogger("app.api.ingestion")
 router = APIRouter(prefix="/documents", tags=["documents"])
@@ -101,3 +102,25 @@ async def get_chunks(request: Request, document_id: str):
     if not p.exists():
         raise HTTPException(status_code=404, detail="Chunks not found")
     return ChunkedDocument.model_validate_json(p.read_text(encoding="utf-8"))
+
+
+# Endpoint to trigger embedding of a chunked document. It retrieves the document record and checks if the document has been chunked. If the chunks exist, it uses the EmbeddingService to generate vector embeddings for each chunk and upserts them into the vector database. The document status is updated to "embedded". If the document is not found, not chunked, or if there are no chunks to embed, appropriate HTTP errors are returned.
+@router.post("/{document_id}/embed")
+async def embed_document(request: Request, document_id: str):
+    ingestion = IngestionService(request.app.state.settings, request.app.state.storage)
+    service = EmbeddingService(
+        request.app.state.settings, request.app.state.openai,
+        request.app.state.vector_store, ingestion)
+    try:
+        n = await service.embed_document(document_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Document not found")
+    except ValueError as e:
+        raise HTTPException(status_code=409, detail=str(e))   # chunk it first
+    return {"document_id": document_id, "status": "embedded", "chunks_embedded": n}
+
+
+@router.get("/{document_id}/vector-count")
+async def vector_count(request: Request, document_id: str):
+    n = await request.app.state.vector_store.count(document_id)
+    return {"document_id": document_id, "vectors": n}

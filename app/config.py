@@ -37,6 +37,10 @@ class Settings(BaseSettings):
     vision_model: str = "gpt-4o-mini"   # multimodal model for scans/handwriting (use gpt-4o for tougher handwriting)
     pdf_text_min_chars: int = 20        # a page below this many chars is treated as scanned -> vision OCR
 
+     # Embeddings
+    embedding_dim: int = 1536      # text-embedding-3-small native size
+    embed_batch_size: int = 100
+
     @property
     def is_prod(self) -> bool:
         return self.environment.lower() == "prod"

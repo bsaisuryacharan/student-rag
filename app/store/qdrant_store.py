@@ -63,3 +63,25 @@ class VectorStore:
     async def count(self, document_id: str) -> int:
         res = await self.client.count(self.collection, count_filter=self._doc_filter(document_id), exact=True)
         return res.count
+    
+
+    # Below is the search method of the VectorStore class, which performs a similarity search in the Qdrant collection based on a given vector embedding. The method takes several optional parameters to filter the search results, such as subject, document_id, chapter, and score_threshold. It constructs a query filter based on the provided parameters and then calls the query_points method of the Qdrant client to retrieve the top_k most similar points that match the query vector and filter criteria. The method returns a list of ScoredPoint objects that contain the matching points along with their similarity scores and payloads for further processing or retrieval of relevant information.
+    async def search(self, vector: list[float], top_k: int, *,
+                     subject: str | None = None, document_id: str | None = None,
+                     chapter: str | None = None, score_threshold: float | None = None):
+        if not await self.client.collection_exists(self.collection):
+            return []
+        must = []
+        if subject:
+            must.append(models.FieldCondition(key="subject", match=models.MatchValue(value=subject)))
+        if document_id:
+            must.append(models.FieldCondition(key="document_id", match=models.MatchValue(value=document_id)))
+        if chapter:
+            must.append(models.FieldCondition(key="chapter", match=models.MatchValue(value=chapter)))
+        qfilter = models.Filter(must=must) if must else None
+
+        res = await self.client.query_points(
+            self.collection, query=vector, limit=top_k,
+            query_filter=qfilter, score_threshold=score_threshold, with_payload=True,
+        )
+        return res.points     # list[ScoredPoint] with .score and .payload

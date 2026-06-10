@@ -18,6 +18,8 @@ from app.api.ingestion import router as documents_router
 
 from app.store.qdrant_store import VectorStore
 
+from app.api.search import router as search_router
+
 logger = logging.getLogger("app")
 
 @asynccontextmanager
@@ -29,6 +31,7 @@ async def lifespan(app: FastAPI):
     app.state.openai = build_openai_client(settings)
     app.state.vector_store = VectorStore(app.state.qdrant, settings)
     app.state.storage = LocalStorage(settings.data_dir)
+    app.include_router(search_router, prefix="/v1")
     logger.info("Startup complete (env=%s)", settings.environment)
     try:
         yield

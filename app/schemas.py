@@ -61,3 +61,27 @@ class ParsedDocument(BaseModel):
     document_name: str
     subject: str | None = None
     pages: list[PageUnit]
+
+
+class RetrievedChunk(BaseModel):
+    chunk_id: str | None = None
+    text: str
+    score: float
+    document_id: str | None = None
+    document_name: str | None = None
+    subject: str | None = None
+    chapter: str | None = None
+    page: int | None = None
+
+
+class SearchRequest(BaseModel):
+    query: str
+    top_k: int | None = None
+    subject: str | None = None
+    document_id: str | None = None
+    chapter: str | None = None
+
+
+class SearchResponse(BaseModel):
+    query: str
+    results: list[RetrievedChunk]

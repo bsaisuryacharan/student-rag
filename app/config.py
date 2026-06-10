@@ -41,6 +41,10 @@ class Settings(BaseSettings):
     embedding_dim: int = 1536      # text-embedding-3-small native size
     embed_batch_size: int = 100
 
+    # Retrieval
+    retrieval_top_k: int = 5
+    retrieval_min_score: float | None = None   # optional cosine cutoff to drop weak matches
+
     @property
     def is_prod(self) -> bool:
         return self.environment.lower() == "prod"

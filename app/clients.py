@@ -8,7 +8,7 @@ def build_qdrant_client(settings: Settings) -> AsyncQdrantClient:
     return AsyncQdrantClient(
         url=settings.qdrant_url,
         api_key=settings.qdrant_api_key or None,
-        timeout=30,
+        timeout=60,   # cloud round-trips carry multi-MB blob parts, so allow more headroom than local
     )
 
 

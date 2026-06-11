@@ -1,13 +1,13 @@
 # app/embedding/service.py
 import asyncio
 import logging
-from pathlib import Path
 
 from openai import AsyncOpenAI
 
 from app.config import Settings
 from app.ingestion.service import IngestionService
 from app.schemas import ChunkedDocument, DocumentStatus
+from app.storage import CHUNKS_BLOB
 from app.store.qdrant_store import VectorStore
 
 logger = logging.getLogger("app.embedding")
@@ -35,14 +35,14 @@ class EmbeddingService:
 
     # The embed_document method is responsible for taking a document ID, retrieving the corresponding DocumentRecord, and then processing the chunked document to generate vector embeddings for each chunk of text. It first checks if the document has been chunked by looking for the chunks.json file. If the file exists, it reads the chunked document and uses the _embed_texts method to generate embeddings for each chunk of text. The resulting vectors are then upserted into the Qdrant vector database using the VectorStore's upsert method. Finally, it updates the status of the document to "embedded" and returns the number of chunks that were embedded. If the document is not found, not chunked, or if there are no chunks to embed, appropriate errors are raised.
     async def embed_document(self, document_id: str) -> int:
-        record = self.ingestion.get(document_id)
+        record = await self.ingestion.get(document_id)
         if record is None:
             raise FileNotFoundError(document_id)
-        chunks_path = Path(self.settings.data_dir) / "raw" / document_id / "chunks.json"
-        if not chunks_path.exists():
+        chunks_blob = await self.ingestion.storage.get_blob(document_id, CHUNKS_BLOB)
+        if chunks_blob is None:
             raise ValueError("Document not chunked yet")
 
-        chunked = ChunkedDocument.model_validate_json(chunks_path.read_text(encoding="utf-8"))
+        chunked = ChunkedDocument.model_validate_json(chunks_blob)
         if not chunked.chunks:
             raise ValueError("No chunks to embed")
 
@@ -56,6 +56,6 @@ class EmbeddingService:
 
         await self.store.upsert(document_id, chunked.chunks, vectors, sparse_vectors)
         record.status = DocumentStatus.embedded
-        self.ingestion.save_record(record)
+        await self.ingestion.save_record(record)
         logger.info("Embedded %s: %d chunks", document_id, len(chunked.chunks))
         return len(chunked.chunks)

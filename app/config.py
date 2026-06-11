@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     # Qdrant
     qdrant_url: str = "http://localhost:6333"
     collection_name: str = "study_chunks"
+    docs_collection_name: str = "study_docs"   # payload-only collection for raw files + pipeline artifacts
 
     # Models
     embedding_model: str = "text-embedding-3-small"
@@ -29,7 +30,6 @@ class Settings(BaseSettings):
     chunk_overlap_pct: int = 12
 
     # Ingestion / storage
-    data_dir: str = "data"
     max_upload_mb: int = 25
     allowed_extensions: set[str] = {".pdf", ".docx", ".doc", ".txt", ".png", ".jpg", ".jpeg"}
 

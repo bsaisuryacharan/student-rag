@@ -13,7 +13,7 @@ from app.clients import build_qdrant_client, build_openai_client
 from app.api.routes import router as system_router
 
 # add import near the others
-from app.storage import LocalStorage
+from app.storage import QdrantStorage
 from app.api.ingestion import router as documents_router
 
 from app.store.qdrant_store import VectorStore
@@ -34,7 +34,9 @@ async def lifespan(app: FastAPI):
     app.state.qdrant = build_qdrant_client(settings)
     app.state.openai = build_openai_client(settings)
     app.state.vector_store = VectorStore(app.state.qdrant, settings)
-    app.state.storage = LocalStorage(settings.data_dir)
+    # Raw files and pipeline artifacts live in Qdrant Cloud too — nothing on local disk
+    app.state.storage = QdrantStorage(app.state.qdrant, settings)
+    await app.state.storage.ensure_collection()
     # Loaded once at startup: the BM25 model download/initialization is too slow to do per-request
     app.state.sparse_encoder = SparseEncoder(settings.sparse_model)
     logger.info("Startup complete (env=%s)", settings.environment)

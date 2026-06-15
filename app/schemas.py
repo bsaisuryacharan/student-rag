@@ -31,6 +31,7 @@ class DocumentStatus(str, Enum):
     chunked = "chunked"
     embedded = "embedded"
     failed = "failed"
+    queued = "queued"   
 
 class DocumentRecord(BaseModel):
     document_id: str
@@ -40,6 +41,7 @@ class DocumentRecord(BaseModel):
     size_bytes: int
     sha256: str
     storage_path: str
+    error: str | None = None 
     status: DocumentStatus = DocumentStatus.uploaded
     upload_date: datetime
     page_count: int | None = None

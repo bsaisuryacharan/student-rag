@@ -53,6 +53,10 @@ class Settings(BaseSettings):
     sparse_model: str = "Qdrant/bm25"
     hybrid_prefetch_limit: int = 20    # candidates fetched per branch (dense/sparse) before RRF fusion
 
+     # Background worker
+    celery_broker_url: str = "redis://localhost:6379/0"
+    celery_result_backend: str = "redis://localhost:6379/1"
+
     @property
     def is_prod(self) -> bool:
         return self.environment.lower() == "prod"

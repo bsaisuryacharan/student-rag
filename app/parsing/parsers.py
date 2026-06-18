@@ -11,12 +11,11 @@ from app.schemas import PageUnit
 # All parsers operate on the raw file bytes (fetched from the cloud document store)
 # rather than filesystem paths, so parsing never requires the file to exist on disk.
 
-# Below parse_txt function decodes the text content of a .txt file and returns it as a list of PageUnit objects. Each PageUnit represents a page of the document, and since .txt files typically do not have multiple pages, we create a single PageUnit with the entire text content.
 def parse_txt(data: bytes) -> list[PageUnit]:
     text = data.decode("utf-8", errors="replace").strip()
     return [PageUnit(page=1, text=text)]
 
-# The parse_docx function uses the python-docx library to read the content of a .docx file. It iterates through the paragraphs and tables in the document, extracting the text and formatting it as needed. For paragraphs, it checks the style to determine if it should be treated as a heading. For tables, it flattens them into a Markdown-like format. The resulting text is returned as a list of PageUnit objects, with each PageUnit representing a page of the document (in this case, we treat the entire document as one page).
+
 def parse_docx(data: bytes) -> list[PageUnit]:
     from docx import Document as Docx
     doc = Docx(io.BytesIO(data))
@@ -33,25 +32,62 @@ def parse_docx(data: bytes) -> list[PageUnit]:
     return [PageUnit(page=1, text="\n".join(lines).strip())]
 
 
-# The parse_pdf function uses the PyMuPDF library to read the content of a PDF file. It iterates through each page of the PDF, extracting the text content. If a page has a text layer with enough characters (as determined by the min_chars parameter), it is treated as a regular text page. If a page has fewer characters than the threshold, it is assumed to be a scanned image, and the function uses the ocr_image function to perform OCR on the page's image representation. The resulting text for each page is returned as a list of PageUnit objects, with each PageUnit representing a page of the PDF document.
-def _extract_set_label(page: fitz.Page) -> str:
+def _extract_page_text(page: fitz.Page) -> str:
     """
-    Exam PDFs print 'SET - 1' inside a drawn oval in the top-right corner.
-    PyMuPDF's normal text-flow extraction misses it because it's a floating
-    block outside the main column. We scan all blocks near the top of the page
-    and return any 'SET - N' string found, or empty string if none.
+    Faithful full-page text extraction that handles complex layouts.
+
+    PyMuPDF's get_text("text") follows its own internal reading order and
+    silently drops any block that falls outside the main text column:
+    floating labels (labels inside ovals/boxes), sidebar notes, multi-column
+    layouts, margin annotations, table cells read out of order, etc.
+
+    Strategy:
+    1. Detect and extract tables first via PyMuPDF's table detector, rendered
+       as tab-separated rows so their content is fully searchable.
+    2. Collect every remaining text block on the page (including floating ones
+       that the flow reader skips).
+    3. Merge everything sorted by vertical position so reading order is
+       preserved regardless of where on the page the block sits.
+
+    This generically handles:
+    - Floating labels anywhere on the page (set numbers, roll-no boxes, codes)
+    - Multi-column academic / exam paper layouts
+    - Sidebar / margin notes and annotations
+    - Tables (cells kept together and in row order)
+    - Any text inside drawn shapes (ovals, rectangles, callouts)
     """
-    import re
-    page_height = page.rect.height
-    top_zone = page_height * 0.2          # only look in the top 20% of the page
+    # Step 1: extract tables and record their bounding boxes
+    table_bboxes: list[fitz.Rect] = []
+    table_parts: list[tuple[float, str]] = []   # (y0, rendered_text)
+    try:
+        for table in page.find_tables():
+            rect = fitz.Rect(table.bbox)
+            table_bboxes.append(rect)
+            rows = []
+            for row in table.extract():
+                cells = [str(c).strip() if c is not None else "" for c in row]
+                rows.append("\t".join(cells))
+            table_parts.append((rect.y0, "\n".join(rows)))
+    except Exception:
+        pass  # older PyMuPDF or page has no tables — skip gracefully
+
+    # Step 2: collect all text blocks, skipping regions already covered by tables
+    block_parts: list[tuple[float, float, str]] = []
     for block in page.get_text("blocks"):
         x0, y0, x1, y1, text = block[0], block[1], block[2], block[3], block[4]
-        if y1 > top_zone:
+        text = text.strip()
+        if not text:
             continue
-        match = re.search(r"SET\s*[-–]\s*(\d+)", text, re.IGNORECASE)
-        if match:
-            return f"SET - {match.group(1)}"
-    return ""
+        if any(fitz.Rect(x0, y0, x1, y1).intersects(tb) for tb in table_bboxes):
+            continue  # already captured by table extractor
+        block_parts.append((y0, x0, text))
+
+    # Step 3: merge and sort everything by vertical position
+    all_parts: list[tuple[float, str]] = [(y, t) for y, x, t in block_parts]
+    all_parts.extend(table_parts)
+    all_parts.sort(key=lambda p: p[0])
+
+    return "\n".join(t for _, t in all_parts)
 
 
 async def parse_pdf(data: bytes, *, openai: AsyncOpenAI, vision_model: str,
@@ -60,13 +96,7 @@ async def parse_pdf(data: bytes, *, openai: AsyncOpenAI, vision_model: str,
     doc = fitz.open(stream=data, filetype="pdf")
     try:
         for i, page in enumerate(doc, start=1):
-            text = page.get_text("text").strip()
-
-            # Prepend any floating SET label so BM25 can match "SET 1" queries
-            set_label = _extract_set_label(page)
-            if set_label:
-                text = f"[{set_label}]\n{text}"
-
+            text = _extract_page_text(page)
             if len(text) >= min_chars:            # has a real text layer
                 pages.append(PageUnit(page=i, text=text))
             else:                                 # scanned/image page -> vision OCR
@@ -76,7 +106,7 @@ async def parse_pdf(data: bytes, *, openai: AsyncOpenAI, vision_model: str,
         doc.close()
     return pages
 
-# The _normalize_image function takes the raw image bytes and a maximum side length as input. It uses the PIL library to open the image, convert it to RGB format, and resize it if its largest dimension exceeds the specified maximum side length. The normalized image is then saved to a bytes buffer in PNG format and returned as bytes. This function is used to prepare images for OCR processing, ensuring that they are in a consistent format and size to optimize OCR performance and cost.
+
 def _normalize_image(data: bytes, max_side: int = 2000) -> bytes:
     with Image.open(io.BytesIO(data)) as im:
         im = im.convert("RGB")
@@ -86,7 +116,7 @@ def _normalize_image(data: bytes, max_side: int = 2000) -> bytes:
         im.save(buf, format="PNG")
         return buf.getvalue()
 
-# The parse_image function is an asynchronous function that takes the raw image bytes, an OpenAI client, and a vision model name as input. It uses the _normalize_image function to preprocess the image and then calls the ocr_image function to perform OCR on the normalized image. The resulting text is returned as a list of PageUnit objects, with each PageUnit representing a page of the document (in this case, we treat the entire image as one page). This function is used to extract text from images, which can be particularly useful for scanned documents or handwritten notes.
+
 async def parse_image(data: bytes, *, openai: AsyncOpenAI, vision_model: str) -> list[PageUnit]:
     text = await ocr_image(openai, vision_model, _normalize_image(data), "image/png")
     return [PageUnit(page=1, text=text)]

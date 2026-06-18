@@ -99,6 +99,13 @@ class VectorStore:
         return res.points
 
     # The _doc_filter method creates a filter for querying the Qdrant collection based on the document_id. This filter is used to select points in the collection that belong to a specific document, allowing for operations such as deletion or counting of points associated with that document.
+    async def delete_document(self, document_id: str) -> None:
+        if await self.client.collection_exists(self.collection):
+            await self.client.delete(
+                self.collection,
+                points_selector=models.FilterSelector(filter=self._doc_filter(document_id)),
+            )
+
     def _doc_filter(self, document_id: str) -> models.Filter:
         return models.Filter(must=[models.FieldCondition(
             key="document_id", match=models.MatchValue(value=document_id))])

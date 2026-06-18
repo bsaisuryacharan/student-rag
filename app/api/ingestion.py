@@ -144,6 +144,29 @@ async def get_document(request: Request, document_id: str, user: Annotated[dict,
     return record
 
 
+@router.delete("/{document_id}", summary="Delete a single document")
+async def delete_document(request: Request, document_id: str,
+                          user: Annotated[dict, Depends(get_current_user)]):
+    """
+    Delete a single document: removes all blobs (raw file, parsed, chunks)
+    and all vectors from Qdrant.  Users can only delete their own documents;
+    admins can delete any document.
+    """
+    ingestion = IngestionService(request.app.state.settings, request.app.state.storage)
+    record = await ingestion.get(document_id)
+    sub = user.get("sub")
+    is_admin = user.get("role") == "admin" or sub in (request.app.state.settings.admin_emails or [])
+
+    if record is None or (not is_admin and record.user_id is not None and record.user_id != sub):
+        raise HTTPException(status_code=404, detail="Document not found")
+
+    await request.app.state.storage.cleanup(document_id)
+    await request.app.state.vector_store.delete_document(document_id)
+
+    logger.info("Deleted document %s (%s)", document_id, record.document_name)
+    return {"deleted": document_id, "document_name": record.document_name}
+
+
 @router.get("/{document_id}/status-stream",
             summary="Stream processing status (SSE)",
             response_description="Server-Sent Events — one event per status change until embedded or failed")

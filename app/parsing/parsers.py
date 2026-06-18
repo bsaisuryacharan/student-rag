@@ -34,6 +34,26 @@ def parse_docx(data: bytes) -> list[PageUnit]:
 
 
 # The parse_pdf function uses the PyMuPDF library to read the content of a PDF file. It iterates through each page of the PDF, extracting the text content. If a page has a text layer with enough characters (as determined by the min_chars parameter), it is treated as a regular text page. If a page has fewer characters than the threshold, it is assumed to be a scanned image, and the function uses the ocr_image function to perform OCR on the page's image representation. The resulting text for each page is returned as a list of PageUnit objects, with each PageUnit representing a page of the PDF document.
+def _extract_set_label(page: fitz.Page) -> str:
+    """
+    Exam PDFs print 'SET - 1' inside a drawn oval in the top-right corner.
+    PyMuPDF's normal text-flow extraction misses it because it's a floating
+    block outside the main column. We scan all blocks near the top of the page
+    and return any 'SET - N' string found, or empty string if none.
+    """
+    import re
+    page_height = page.rect.height
+    top_zone = page_height * 0.2          # only look in the top 20% of the page
+    for block in page.get_text("blocks"):
+        x0, y0, x1, y1, text = block[0], block[1], block[2], block[3], block[4]
+        if y1 > top_zone:
+            continue
+        match = re.search(r"SET\s*[-–]\s*(\d+)", text, re.IGNORECASE)
+        if match:
+            return f"SET - {match.group(1)}"
+    return ""
+
+
 async def parse_pdf(data: bytes, *, openai: AsyncOpenAI, vision_model: str,
                     min_chars: int) -> list[PageUnit]:
     pages: list[PageUnit] = []
@@ -41,6 +61,12 @@ async def parse_pdf(data: bytes, *, openai: AsyncOpenAI, vision_model: str,
     try:
         for i, page in enumerate(doc, start=1):
             text = page.get_text("text").strip()
+
+            # Prepend any floating SET label so BM25 can match "SET 1" queries
+            set_label = _extract_set_label(page)
+            if set_label:
+                text = f"[{set_label}]\n{text}"
+
             if len(text) >= min_chars:            # has a real text layer
                 pages.append(PageUnit(page=i, text=text))
             else:                                 # scanned/image page -> vision OCR

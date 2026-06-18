@@ -65,50 +65,75 @@ class SemanticChunker:
     
 
     # The chunk method is the main method of the SemanticChunker class, which takes a ParsedDocument and an upload date as input and returns a list of Chunk objects. The method first splits the parsed document into segments using the _split_segments method, and then applies a hard split to any segments that exceed the target token count using the _hard_split method. After obtaining a list of segments that are within the target token count, the method iterates through these segments and creates chunks of text by packing paragraphs together until the target token count is reached. It also allows for some overlap between chunks to maintain context. Each chunk is associated with metadata that includes the original document name, subject, chapter, page number, and upload date. Finally, the method returns a list of Chunk objects that can be stored in the vector database for later retrieval and use in generating answers to user queries.
-    def chunk(self, parsed: ParsedDocument, upload_date: datetime, user_id: str | None = None) -> list[Chunk]:
-        segments: list[_Segment] = []
-        for s in self._split_segments(parsed):
-            segments.extend(self._hard_split(s))
-
-        # Phase 1: pack paragraphs up to the token target
-        base: list[tuple[str, int, str | None]] = []
+    def _chunk_page(self, page_units: list[_Segment], page_num: int,
+                    doc_id: str, doc_name: str, subject: str | None,
+                    upload_date: datetime, user_id: str | None,
+                    start_index: int) -> list[Chunk]:
+        """
+        Chunk one page's segments in isolation — overlap never crosses a page
+        boundary so content from one page cannot contaminate another page's chunks.
+        This is critical for documents with multiple independent sections per page
+        (exam sets, chapters) where cross-page bleed makes set-specific retrieval fail.
+        """
+        # Phase 1: pack segments up to the token target
+        base: list[tuple[str, str | None]] = []
         cur: list[str] = []
         cur_tok = 0
-        cur_page: int | None = None
         cur_ch: str | None = None
-        for s in segments:
+        for s in page_units:
             st = self._ntokens(s.text)
             if cur and cur_tok + st > self.target:
-                base.append(("\n\n".join(cur).strip(), cur_page, cur_ch))
-                cur, cur_tok, cur_page, cur_ch = [], 0, None, None
+                base.append(("\n\n".join(cur).strip(), cur_ch))
+                cur, cur_tok, cur_ch = [], 0, None
             if not cur:
-                cur_page, cur_ch = s.page, s.chapter
+                cur_ch = s.chapter
             cur.append(s.text)
             cur_tok += st
         if cur:
-            base.append(("\n\n".join(cur).strip(), cur_page, cur_ch))
+            base.append(("\n\n".join(cur).strip(), cur_ch))
 
-        # Phase 2: prepend token-level overlap from the previous chunk
+        # Phase 2: prepend overlap from previous chunk within the same page only
+        word = _NUM_WORDS.get(page_num, "")
+        word_part = f" ({word})" if word else ""
+        page_label = f"[Page {page_num}{word_part}]"
+
         chunks: list[Chunk] = []
-        for i, (text, page, ch) in enumerate(base):
+        for i, (text, ch) in enumerate(base):
             if i > 0:
-                prev = self.enc.encode(base[i - 1][0])
-                if prev:
-                    text = f"{self.enc.decode(prev[-self.overlap:])}\n\n{text}"
+                prev_toks = self.enc.encode(base[i - 1][0])
+                if prev_toks:
+                    text = f"{self.enc.decode(prev_toks[-self.overlap:])}\n\n{text}"
 
-            # Stamp every chunk with its page number in both numeral and word
-            # form so queries like "page 2", "set two", "second page" all match
-            # via BM25 regardless of where in the page this chunk's content sits.
-            page_num = page or 1
-            word = _NUM_WORDS.get(page_num, "")
-            word_part = f" ({word})" if word else ""
-            text = f"[Page {page_num}{word_part}]\n{text}"
+            # Every chunk carries its page label so BM25 can match
+            # "page 1", "set 1", "page one", "set one" regardless of
+            # which part of the page's content this chunk covers.
+            text = f"{page_label}\n{text}"
 
             chunks.append(Chunk(
-                chunk_id=f"{parsed.document_id}:{i}",
+                chunk_id=f"{doc_id}:{start_index + i}",
                 text=text,
                 metadata=ChunkMetadata(
-                    document_name=parsed.document_name, subject=parsed.subject,
-                    chapter=ch, page=page or 1, upload_date=upload_date, user_id=user_id),
+                    document_name=doc_name, subject=subject,
+                    chapter=ch, page=page_num, upload_date=upload_date, user_id=user_id),
             ))
+        return chunks
+
+    def chunk(self, parsed: ParsedDocument, upload_date: datetime, user_id: str | None = None) -> list[Chunk]:
+        # Group segments by page so each page is chunked independently.
+        # Overlap is confined within a page — content never bleeds across page
+        # boundaries, keeping each chunk's content pure to its source page.
+        from collections import defaultdict
+        page_segments: dict[int, list[_Segment]] = defaultdict(list)
+        for s in self._split_segments(parsed):
+            for seg in self._hard_split(s):
+                page_segments[seg.page].append(seg)
+
+        chunks: list[Chunk] = []
+        for page_num in sorted(page_segments.keys()):
+            page_chunks = self._chunk_page(
+                page_segments[page_num], page_num,
+                parsed.document_id, parsed.document_name, parsed.subject,
+                upload_date, user_id, start_index=len(chunks),
+            )
+            chunks.extend(page_chunks)
         return chunks

@@ -28,5 +28,9 @@ build/
 *.log
 /tmp/
 
+# Old local storage (migrated to Qdrant Cloud)
+data/
+qdrant_storage/
+
 # Celery filesystem broker (leftover from local dev)
 /control/

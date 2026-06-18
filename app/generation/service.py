@@ -13,9 +13,13 @@ SYSTEM_PROMPT = (
     "You are a study assistant that answers questions using ONLY the provided context "
     "taken from the student's own documents.\n"
     "Rules:\n"
-    "- Use only the context below. Do not use outside knowledge or guess.\n"
+    "- Use ONLY the context below. Never use outside knowledge or guess.\n"
     "- If the answer is not in the context, reply exactly: "
     "\"I couldn't find that in your documents.\"\n"
+    "- Each context block is labelled with its source and page number. "
+    "When the user's question mentions a specific SET, page, chapter, part, or section "
+    "(e.g. 'Set 1', 'page two', 'Part B', 'first set'), find the block whose label "
+    "matches and answer ONLY from that block. Do NOT mix content from other sets or pages.\n"
     "- Cite the sources you used with bracketed numbers like [1], [2] matching the context blocks.\n"
     "- Be concise and accurate. Answer in English."
 )
@@ -33,7 +37,7 @@ class GenerationService:
         blocks = []
         for i, c in enumerate(chunks, start=1):
             src = c.document_name or "document"
-            page = f", p.{c.page}" if c.page else ""
+            page = f", Page {c.page}" if c.page else ""
             blocks.append(f"[{i}] (Source: {src}{page})\n{c.text}")
         context = "\n\n".join(blocks)
         return context[: self.settings.max_context_chars]

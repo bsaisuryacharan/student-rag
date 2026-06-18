@@ -8,6 +8,14 @@ import tiktoken
 from app.config import Settings
 from app.schemas import Chunk, ChunkMetadata, ParsedDocument
 
+# Covers page/set numbers users commonly write as words ("set one", "page two")
+_NUM_WORDS = {
+    1: "one", 2: "two", 3: "three", 4: "four", 5: "five",
+    6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten",
+    11: "eleven", 12: "twelve", 13: "thirteen", 14: "fourteen", 15: "fifteen",
+    16: "sixteen", 17: "seventeen", 18: "eighteen", 19: "nineteen", 20: "twenty",
+}
+
 @dataclass
 class _Segment:
     text: str
@@ -87,6 +95,15 @@ class SemanticChunker:
                 prev = self.enc.encode(base[i - 1][0])
                 if prev:
                     text = f"{self.enc.decode(prev[-self.overlap:])}\n\n{text}"
+
+            # Stamp every chunk with its page number in both numeral and word
+            # form so queries like "page 2", "set two", "second page" all match
+            # via BM25 regardless of where in the page this chunk's content sits.
+            page_num = page or 1
+            word = _NUM_WORDS.get(page_num, "")
+            word_part = f" ({word})" if word else ""
+            text = f"[Page {page_num}{word_part}]\n{text}"
+
             chunks.append(Chunk(
                 chunk_id=f"{parsed.document_id}:{i}",
                 text=text,

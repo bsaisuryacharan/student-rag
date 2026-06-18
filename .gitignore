@@ -1,0 +1,32 @@
+# Secrets — NEVER commit
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and temp
+*.log
+/tmp/
+
+# Celery filesystem broker (leftover from local dev)
+/control/

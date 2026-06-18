@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+openai
+qdrant-client
+pydantic
+pydantic-settings
+python-dotenv
+fastembed
+PyMuPDF
+celery
+redis
+tiktoken
+Pillow
+python-multipart
+PyJWT
+cryptography

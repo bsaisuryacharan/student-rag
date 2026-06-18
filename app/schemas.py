@@ -1,0 +1,118 @@
+# app/schemas.py
+from datetime import datetime
+from pydantic import BaseModel
+from enum import Enum
+
+# As per the scenario, since students was the audience of this app, we are creating a schema for the chunks of the documents that will be stored in the vector database. The ChunkMetadata class contains information about the document from which the chunk was created, such as the document name, subject, chapter, page number, and upload date. 
+# The Chunk class contains the chunk ID, the text of the chunk, and the metadata associated with it. This schema will be used to structure the data that we store in the vector database and to ensure that we have all the necessary information about each chunk for later retrieval and use in generating answers to user queries. 
+class ChunkMetadata(BaseModel):
+    document_name: str
+    subject: str | None = None
+    chapter: str | None = None
+    page: int | None = None
+    upload_date: datetime
+    user_id: str | None = None
+
+
+class Chunk(BaseModel):
+    chunk_id: str            # stable, unique, e.g. f"{document_id}:{index}"
+    text: str
+    metadata: ChunkMetadata
+
+
+class ChunkedDocument(BaseModel):
+    document_id: str
+    document_name: str
+    subject: str | None = None
+    chunks: list[Chunk]
+
+class DocumentStatus(str, Enum):
+    uploaded = "uploaded"
+    parsed = "parsed"
+    chunked = "chunked"
+    embedded = "embedded"
+    failed = "failed"
+    queued = "queued"   
+
+class DocumentRecord(BaseModel):
+    document_id: str
+    document_name: str            # sanitized original filename
+    subject: str | None = None
+    content_type: str | None = None
+    size_bytes: int
+    sha256: str
+    storage_path: str
+    error: str | None = None 
+    status: DocumentStatus = DocumentStatus.uploaded
+    upload_date: datetime
+    page_count: int | None = None
+    user_id: str | None = None
+
+class UploadResponse(BaseModel):
+    document_id: str
+    document_name: str
+    status: DocumentStatus
+    size_bytes: int
+    message: str = "Document queued for processing (parse → chunk → embed). Poll the status_url to track progress."
+    status_url: str = ""
+
+class PageUnit(BaseModel):
+    page: int
+    text: str
+    chapter_hint: str | None = None
+
+
+class ParsedDocument(BaseModel):
+    document_id: str
+    document_name: str
+    subject: str | None = None
+    pages: list[PageUnit]
+
+
+class RetrievedChunk(BaseModel):
+    chunk_id: str | None = None
+    text: str
+    score: float
+    document_id: str | None = None
+    document_name: str | None = None
+    subject: str | None = None
+    chapter: str | None = None
+    page: int | None = None
+
+
+class SearchRequest(BaseModel):
+    query: str
+    top_k: int | None = None
+    subject: str | None = None
+    document_id: str | None = None
+    chapter: str | None = None
+
+
+class SearchResponse(BaseModel):
+    query: str
+    results: list[RetrievedChunk]
+
+class AskRequest(BaseModel):
+    question: str
+    top_k: int | None = None
+    subject: str | None = None
+    document_id: str | None = None
+    chapter: str | None = None
+
+    model_config = {"json_schema_extra": {"example": {"question": "What is the invoice date?"}}}
+
+
+class Citation(BaseModel):
+    index: int
+    document_name: str | None = None
+    page: int | None = None
+    chapter: str | None = None
+    document_id: str | None = None
+    chunk_id: str | None = None
+    score: float
+
+
+class AnswerResponse(BaseModel):
+    question: str
+    answer: str
+    citations: list[Citation]

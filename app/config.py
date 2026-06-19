@@ -22,7 +22,10 @@ class Settings(BaseSettings):
     docs_collection_name: str = "study_docs"   # payload-only collection for raw files + pipeline artifacts
 
     # Models
-    embedding_model: str = "BAAI/bge-small-en-v1.5"
+    # all-MiniLM-L6-v2 is 6 transformer layers vs bge-small's 12, so ~2x faster on CPU.
+    # Same 384-dim output, so no Qdrant schema change. Slightly lower retrieval quality
+    # than bge-small on benchmarks — acceptable tradeoff for the speed here.
+    embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     generation_model: str = "gpt-4o-mini"
 
     # Chunking tunables

@@ -44,7 +44,7 @@ Query Flow (online / sync)
 |---|---|---|
 | Web framework | FastAPI + Uvicorn (async) | async I/O, SSE support, auto-docs |
 | Vector store | Qdrant Cloud (hybrid collection) | dense + sparse, RRF fusion, free tier |
-| Dense embeddings | fastembed `BAAI/bge-small-en-v1.5` (384-dim) | local CPU, no API cost |
+| Dense embeddings | fastembed `sentence-transformers/all-MiniLM-L6-v2` (384-dim) | local CPU, 6-layer → ~2x faster than bge-small |
 | Sparse embeddings | fastembed `Qdrant/bm25` | keyword recall, free |
 | Task queue | Celery + Upstash Redis | durable queue, survives restarts |
 | LLM (generation) | OpenAI `gpt-4o-mini` | fast, cheap, grounded prompting |
@@ -131,7 +131,7 @@ Key settings:
 | `QDRANT_API_KEY` | — | optional for local Qdrant |
 | `CELERY_BROKER_URL` | `redis://localhost:6379/0` | set to Upstash `rediss://` URL |
 | `SUPABASE_URL` | — | drives JWKS endpoint for auth |
-| `EMBEDDING_MODEL` | `BAAI/bge-small-en-v1.5` | fastembed local model |
+| `EMBEDDING_MODEL` | `sentence-transformers/all-MiniLM-L6-v2` | fastembed local model (384-dim) |
 | `GENERATION_MODEL` | `gpt-4o-mini` | OpenAI chat model |
 | `MAX_UPLOAD_MB` | `25` | file size cap |
 | `CHUNK_TARGET_TOKENS` | `512` | target chunk size |
@@ -278,7 +278,7 @@ Each chunk payload in Qdrant contains:
 Collection `study_chunks_hybrid` has two vector spaces:
 
 ```
-dense:   384-dim float  (BAAI/bge-small-en-v1.5, cosine)
+dense:   384-dim float  (sentence-transformers/all-MiniLM-L6-v2, cosine)
 sparse:  variable-dim   (BM25, IDF modifier)
 ```
 

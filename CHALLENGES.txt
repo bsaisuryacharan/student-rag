@@ -117,3 +117,14 @@ Problem: Several operational gaps remain before the system is production-ready.
 Plan: multiple web workers; queue backpressure (reject when the queue is deep); per-user rate
 limiting; a health endpoint exposing worker count and queue depth; retry-with-backoff on
 transient external errors; later, GPU embedding and workers spread across machines.
+
+
+F-004  Incremental re-index granularity is limited by page-number diffing
+Problem: Incremental re-indexing diffs by page number, so an edit that reflows content
+(inserting text pushes later content onto new pages) marks every page from the edit point
+onward as changed, even though only a little new content was added. Single-page formats
+(DOCX/TXT parse as one page) get no benefit at all — any edit re-embeds the whole document.
+Correctness is unaffected; only efficiency. Edits before the change point are still saved.
+Plan: content-based diffing (anchor on text windows/shingles instead of page numbers) so only
+genuinely new/changed content re-indexes regardless of reflow; and finer segmentation for
+single-page formats so they can be partially re-indexed too.

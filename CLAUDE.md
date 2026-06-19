@@ -35,6 +35,11 @@ development and the solutions we landed on. Maintain it continuously, per these 
 short problem (~2 lines) and a short solution (~3-4 lines), with the entry id and, when
 resolved, the commit/files. Keep it easy to scan.
 
+**Describe generically:** state the underlying problem and the general solution, NOT the one
+example that surfaced it. (e.g. "a query targeting a specific page can cite the wrong page",
+not "Part B Set 2 cited page 1".) The example may guide your wording, but the entry must read
+as a general issue that applies broadly.
+
 **Content rule (strict):** `CHALLENGES.txt` holds ONLY the actual problems and their
 solutions. No meta-content — no process notes, triggers, or "how to maintain"
 instructions inside the file. Those rules live here in `CLAUDE.md`.

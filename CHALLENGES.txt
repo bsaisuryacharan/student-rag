@@ -90,16 +90,20 @@ Switched to a supported local model so embedding runs on CPU with no API depende
 File: .env (not committed)
 
 
+C-010  Editing part of a document forced a full re-index
+Problem: Updating any part of a document re-parsed, re-chunked, and re-embedded every page,
+so changing a single page of a large document did the work of the whole document.
+Solution: Added incremental re-indexing. Each page's text is fingerprinted and chunk ids are
+page-scoped, so a page's vectors can be replaced on their own. On re-upload the new file is
+diffed page-by-page; only changed/added pages are re-embedded and removed pages are dropped,
+while unchanged pages keep their vectors. Exposed as an update endpoint on the document.
+Commit 43019ab - app/schemas.py, app/chunking/chunker.py, app/parsing/service.py,
+app/store/qdrant_store.py, app/embedding/service.py, app/worker/tasks.py, app/api/ingestion.py
+
+
 ==========================================================
 FUTURE PROBLEMS  (agreed worth solving, deferred)
 ==========================================================
-
-F-001  Incremental indexing (partial document update)
-Problem: Changing one page of a large document re-parses, re-chunks, and re-embeds the whole
-document; there is no page-level granularity.
-Plan: Use page-scoped chunk ids plus a per-page content hash. On re-upload, diff the hashes
-and only re-embed changed pages (re-chunking the changed page and its neighbours for overlap).
-
 
 F-002  Reprocess endpoints should fail loudly
 Problem: The reprocess steps return a quiet not-found on an unknown id (see C-004), so it is

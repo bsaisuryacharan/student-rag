@@ -1,16 +1,16 @@
-# Graph Report - student-rag  (2026-06-17)
+# Graph Report - student-rag  (2026-06-19)
 
 ## Corpus Check
-- 53 files · ~38,993 words
+- 44 files · ~16,001 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 346 nodes · 757 edges · 27 communities (26 shown, 1 thin omitted)
-- Extraction: 71% EXTRACTED · 29% INFERRED · 0% AMBIGUOUS · INFERRED: 218 edges (avg confidence: 0.52)
+- 362 nodes · 939 edges · 26 communities (23 shown, 3 thin omitted)
+- Extraction: 67% EXTRACTED · 33% INFERRED · 0% AMBIGUOUS · INFERRED: 307 edges (avg confidence: 0.52)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `461ba187`
+- Built from commit: `a674211b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -32,20 +32,19 @@
 - [[_COMMUNITY_Community 14|Community 14]]
 - [[_COMMUNITY_Community 15|Community 15]]
 - [[_COMMUNITY_Community 16|Community 16]]
-- [[_COMMUNITY_Community 17|Community 17]]
 - [[_COMMUNITY_Community 18|Community 18]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Settings` - 59 edges
-2. `IngestionService` - 28 edges
-3. `ParsedDocument` - 23 edges
-4. `VectorStore` - 23 edges
-5. `DocumentStatus` - 22 edges
-6. `IngestionService` - 19 edges
-7. `Request` - 18 edges
-8. `FileTooLargeError` - 18 edges
-9. `QdrantStorage` - 18 edges
-10. `SemanticChunker` - 16 edges
+1. `Settings` - 62 edges
+2. `IngestionService` - 36 edges
+3. `VectorStore` - 35 edges
+4. `DocumentStatus` - 33 edges
+5. `IngestionService` - 27 edges
+6. `ParsedDocument` - 26 edges
+7. `Request` - 23 edges
+8. `QdrantStorage` - 23 edges
+9. `DenseEncoder` - 22 edges
+10. `SparseEncoder` - 22 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `student-rag` --semantically_similar_to--> `Student RAG PDF (Notebook LLM Clone design)`  [INFERRED] [semantically similar]
@@ -69,31 +68,31 @@
 - **Query pipeline: retrieve (hybrid) -> generate grounded answer** — codedoc_retrieval_service, codedoc_hybrid_search, codedoc_generation_service, codedoc_generation_llm [EXTRACTED 0.95]
 - **Uploaded RAG corpus (resume, student-rag, CN notes, invoice)** — resume_doc, studentrag_doc, cnr20_doc, budsinvoice_doc [INFERRED 0.80]
 
-## Communities (27 total, 1 thin omitted)
+## Communities (26 total, 3 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.06
 Nodes (37): Croma Tax Invoice (OnePlus Nord Buds 4 Pro), Computer Networks R20 Unit-1 Notes, Network Types (LAN, MAN, WAN, PAN, VPN), Physical Layer & Transmission Media, OSI & TCP/IP Reference Models, Dense Embeddings (OpenAI text-embedding-3-small, 1536-dim cosine), EmbeddingService (dense+sparse -> Qdrant upsert), POST /v1/ask (retrieve -> grounded answer) (+29 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.14
-Nodes (26): ParsedDocument, Settings, IngestionService, Settings, AsyncOpenAI, IngestionService, ParsedDocument, Settings (+18 more)
+Cohesion: 0.23
+Nodes (12): ParsedDocument, Settings, Chunk, ChunkMetadata, ParsedDocument, AsyncQdrantClient, Settings, Chunk (+4 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.15
-Nodes (13): AsyncOpenAI, RetrievedChunk, Settings, RetrievedChunk, AsyncQdrantClient, Filter, Settings, SparseEncoder (+5 more)
+Cohesion: 0.10
+Nodes (29): IngestionService, Settings, Settings, DenseEncoder, IngestionService, Settings, SparseEncoder, VectorStore (+21 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.12
-Nodes (28): chunk_document(), embed_document(), _file_chunks(), get_chunks(), get_document(), get_parsed(), list_documents(), parse_document() (+20 more)
+Cohesion: 0.13
+Nodes (38): chunk_document(), clear_all_documents(), delete_document(), embed_document(), _file_chunks(), get_chunks(), get_document(), get_parsed() (+30 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.12
-Nodes (19): ready(), search(), Request, Request, build_openai_client(), build_qdrant_client(), AsyncOpenAI, AsyncQdrantClient (+11 more)
+Cohesion: 0.22
+Nodes (16): search(), Depends, get_current_user, Request, get_current_user(), _load_jwks(), Depends, Request (+8 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.14
-Nodes (18): AnswerResponse, ask(), Request, get_settings(), Settings, AsyncOpenAI, RetrievedChunk, Settings (+10 more)
+Cohesion: 0.25
+Nodes (16): AnswerResponse, ask(), Depends, get_current_user, Request, AsyncOpenAI, RetrievedChunk, Settings (+8 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.12
@@ -108,8 +107,8 @@ Cohesion: 0.33
 Nodes (6): ChunkingService (parsed.json -> chunks.json), POST /v1/documents/{id}/chunk, SemanticChunker (structure-aware, token-based), tiktoken (cl100k_base tokenizer), Rationale: ~512 tokens, 10-15% overlap, Rationale: semantic chunking preferred
 
 ### Community 9 - "Community 9"
-Cohesion: 0.24
-Nodes (4): AsyncQdrantClient, Filter, Settings, QdrantStorage
+Cohesion: 0.07
+Nodes (30): build_openai_client(), build_qdrant_client(), AsyncOpenAI, AsyncQdrantClient, Settings, get_settings(), configure_logging(), RequestIdFilter (+22 more)
 
 ### Community 10 - "Community 10"
 Cohesion: 0.50
@@ -120,48 +119,36 @@ Cohesion: 0.50
 Nodes (4): POST /v1/documents/{id}/parse, ParsingService (route by type, persist parsed.json), PyMuPDF (fitz) PDF parsing, Vision/OCR (gpt-4o-mini multimodal)
 
 ### Community 12 - "Community 12"
-Cohesion: 0.36
-Nodes (10): AsyncOpenAI, AsyncOpenAI, PageUnit, PageUnit, _normalize_image(), parse_docx(), parse_image(), parse_pdf() (+2 more)
+Cohesion: 0.28
+Nodes (13): AsyncOpenAI, AsyncOpenAI, PageUnit, Page, PageUnit, _extract_page_text(), _normalize_image(), parse_docx() (+5 more)
 
 ### Community 13 - "Community 13"
-Cohesion: 0.18
-Nodes (10): content_type, document_id, document_name, page_count, sha256, size_bytes, status, storage_path (+2 more)
+Cohesion: 0.21
+Nodes (12): ParsedDocument, AsyncClient, _safe_filename(), DocResult, main(), print_report(), Concurrent upload load test — simulates N users uploading documents simultaneous, upload_and_stream() (+4 more)
 
 ### Community 14 - "Community 14"
-Cohesion: 0.18
-Nodes (10): content_type, document_id, document_name, page_count, sha256, size_bytes, status, storage_path (+2 more)
-
-### Community 15 - "Community 15"
-Cohesion: 0.18
-Nodes (10): content_type, document_id, document_name, page_count, sha256, size_bytes, status, storage_path (+2 more)
-
-### Community 16 - "Community 16"
-Cohesion: 0.18
-Nodes (10): content_type, document_id, document_name, page_count, sha256, size_bytes, status, storage_path (+2 more)
-
-### Community 17 - "Community 17"
-Cohesion: 0.20
-Nodes (9): content_type, document_id, document_name, sha256, size_bytes, status, storage_path, subject (+1 more)
+Cohesion: 0.40
+Nodes (3): ready(), Request, Response
 
 ## Knowledge Gaps
-- **106 isolated node(s):** `Request`, `Response`, `LogRecord`, `AsyncOpenAI`, `document_id` (+101 more)
+- **62 isolated node(s):** `Request`, `Response`, `HTTPAuthorizationCredentials`, `_bearer_optional`, `LogRecord` (+57 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Settings` connect `Community 5` to `Community 1`, `Community 2`, `Community 3`, `Community 4`, `Community 9`?**
-  _High betweenness centrality (0.123) - this node is a cross-community bridge._
-- **Why does `QdrantStorage` connect `Community 9` to `Community 3`, `Community 4`, `Community 5`?**
-  _High betweenness centrality (0.031) - this node is a cross-community bridge._
-- **Why does `IngestionService` connect `Community 3` to `Community 1`, `Community 5`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Are the 45 inferred relationships involving `Settings` (e.g. with `AnswerResponse` and `ParsedDocument`) actually correct?**
-  _`Settings` has 45 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `Settings` connect `Community 2` to `Community 1`, `Community 3`, `Community 5`, `Community 9`, `Community 13`?**
+  _High betweenness centrality (0.146) - this node is a cross-community bridge._
+- **Why does `IngestionService` connect `Community 3` to `Community 1`, `Community 2`, `Community 9`?**
+  _High betweenness centrality (0.066) - this node is a cross-community bridge._
+- **Why does `VectorStore` connect `Community 2` to `Community 9`, `Community 1`?**
+  _High betweenness centrality (0.050) - this node is a cross-community bridge._
+- **Are the 50 inferred relationships involving `Settings` (e.g. with `AnswerResponse` and `ParsedDocument`) actually correct?**
+  _`Settings` has 50 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 7 inferred relationships involving `IngestionService` (e.g. with `Settings` and `DuplicateDocumentError`) actually correct?**
   _`IngestionService` has 7 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 17 inferred relationships involving `ParsedDocument` (e.g. with `Request` and `ParsedDocument`) actually correct?**
-  _`ParsedDocument` has 17 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 10 inferred relationships involving `VectorStore` (e.g. with `AsyncOpenAI` and `RetrievedChunk`) actually correct?**
-  _`VectorStore` has 10 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 15 inferred relationships involving `VectorStore` (e.g. with `DenseEncoder` and `IngestionService`) actually correct?**
+  _`VectorStore` has 15 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 24 inferred relationships involving `DocumentStatus` (e.g. with `Depends` and `get_current_user`) actually correct?**
+  _`DocumentStatus` has 24 INFERRED edges - model-reasoned connections that need verification._

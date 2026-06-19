@@ -26,14 +26,18 @@ After changing code, run:
 graphify update .
 ```
 
-## Challenges log (`CHALLENGES.md`)
+## Challenges log (`CHALLENGES.txt`)
 
-This repo keeps a `CHALLENGES.md` that records problems found during development
-and the solutions we landed on. Maintain it continuously, per these rules:
+This repo keeps a plain-text `CHALLENGES.txt` that records problems found during
+development and the solutions we landed on. Maintain it continuously, per these rules:
 
-**Content rule (strict):** `CHALLENGES.md` holds ONLY the actual problems and their
+**Format:** plain text, no markdown formatting (no tables/bold/headers). Each entry is a
+short problem (~2 lines) and a short solution (~3-4 lines), with the entry id and, when
+resolved, the commit/files. Keep it easy to scan.
+
+**Content rule (strict):** `CHALLENGES.txt` holds ONLY the actual problems and their
 solutions. No meta-content — no process notes, triggers, or "how to maintain"
-instructions inside the doc. Those rules live here in `CLAUDE.md`.
+instructions inside the file. Those rules live here in `CLAUDE.md`.
 
 **When to edit `CHALLENGES.md`:**
 1. When a problem is **identified and confirmed** to be real and worth tracking

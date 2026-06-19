@@ -1,0 +1,113 @@
+CHALLENGES LOG
+Problems found during development and the solutions we landed on.
+Each entry: a short problem (about 2 lines) and a short solution (3-4 lines).
+
+
+==========================================================
+OPEN CHALLENGES  (confirmed, not yet solved)
+==========================================================
+
+C-009  Citation points to the wrong page
+Problem: Set/number queries return the correct answer, but the top citation can point
+to the wrong page (e.g. "Part B Set 2" answers correctly yet cites page 1).
+Solution: Pending. Cause is BM25 inflating page 1 because its Part-A is full of "(2M)"
+marks, so the token "2" repeats and matches any "2"/"Set 2" query. Candidate fix: parse
+the set/page from the query and filter retrieval by that page so the right page is both
+searched and cited.
+
+
+==========================================================
+RESOLVED CHALLENGES
+==========================================================
+
+C-001  Exam SET label never retrieved
+Problem: Asking "Part B Set 1" returned Set 2 content; the "SET - 1" printed inside a
+circle on each page was never extracted into the searchable text.
+Solution: Replaced PyMuPDF flow extraction (which drops blocks outside the main column)
+with a layout-aware extractor that collects every text block including floating ones,
+plus tables, and sorts them by position to preserve reading order.
+Commit 268821e - app/parsing/parsers.py
+
+
+C-002  Word-vs-numeral query mismatch
+Problem: Users type "set one"/"page two" (words) but documents print "SET - 1" (numerals);
+BM25 treats these as different tokens, so word-form queries missed the right page.
+Solution: Stamp every chunk with "[Page N (word)]" e.g. "[Page 1 (one)]" so both numeral
+and word queries match via sparse search. Generation prompt also tells the LLM to match
+the set/page label and not mix sets.
+Commit b6e19b3 - app/chunking/chunker.py, app/generation/service.py
+
+
+C-003  Cross-page content bleed in chunker
+Problem: "Part B Set 1" still returned wrong content because Set 1's tail questions
+physically appeared inside the Set 2 chunk.
+Solution: Token overlap was copying the end of page 1 into the start of page 2's chunk.
+Refactored chunking to group segments by page and chunk each page in isolation, so overlap
+never crosses a page boundary.
+Commit b2f55f5 - app/chunking/chunker.py
+
+
+C-004  Reprocess silently failing on a stale document_id
+Problem: Re-running parse/chunk/embed never changed the answers; the commands used a
+document_id from a previous session.
+Solution: document_id changes on every fresh upload; the live doc was a different id, so
+every reprocess returned 404 silently while /ask hit the real doc. Always fetch the current
+id from GET /v1/documents before reprocessing. (Loud-error follow-up tracked as F-002.)
+
+
+C-005  Duplicate upload blocked re-processing
+Problem: Re-uploading a fixed document returned HTTP 409 "already uploaded", and the only
+delete was an admin wipe-everything endpoint.
+Solution: Added DELETE /v1/documents/{id} (users delete their own docs, admins any) and
+VectorStore.delete_document() to drop just that doc's vectors. Also documented the in-place
+reprocess path for fixes that don't need a re-upload.
+Commit 7ec48bc - app/api/ingestion.py, app/store/qdrant_store.py
+
+
+C-006  Celery to Upstash Redis (TLS) connection failures
+Problem: The worker couldn't connect to Upstash rediss://, or hung at startup, or rejected
+the result backend.
+Solution: Set SSL via broker_use_ssl/redis_backend_use_ssl in code (URL params parse badly);
+Upstash free tier is DB 0 only, so result backend = rpc:// with task_ignore_result=True;
+start the worker with --without-mingle --without-gossip to avoid the pub/sub hang.
+Files: app/worker/celery_app.py, start_workers.sh
+
+
+C-007  Documents stuck forever at an intermediate status
+Problem: A slow or oversized document could sit at parsing/chunking indefinitely with no
+terminal state.
+Solution: Added task_soft_time_limit=1740s which raises SoftTimeLimitExceeded (caught to
+mark the doc failed with a message) and task_time_limit=1800s as a hard-kill backstop.
+Files: app/worker/celery_app.py, app/worker/tasks.py
+
+
+C-008  Wrong embedding model in config
+Problem: Startup crashed with "Model text-embedding-3-small is not supported".
+Solution: .env had an OpenAI model name; fastembed only supports local models. Changed to
+EMBEDDING_MODEL=BAAI/bge-small-en-v1.5 (384-dim, local CPU).
+File: .env (not committed)
+
+
+==========================================================
+FUTURE PROBLEMS  (agreed worth solving, deferred)
+==========================================================
+
+F-001  Incremental indexing (partial document update)
+Problem: Changing one page of a 100-page document re-parses, re-chunks, and re-embeds the
+whole document; there is no page-level granularity.
+Plan: Page-scoped chunk IDs + a per-page content hash. On re-upload, diff hashes; only
+changed pages get their vectors deleted and re-embedded (re-chunk page +/- 1 for overlap).
+
+
+F-002  Reprocess endpoints should fail loudly
+Problem: /parse, /chunk, /embed return a quiet 404 on an unknown id (see C-004), so it's
+easy to "reprocess" nothing without noticing.
+Plan: Surface a clear error/confirmation; possibly a single /reprocess endpoint that
+validates the id first.
+
+
+F-003  Production hardening (roadmap)
+Problem: Several operational gaps remain before this is production-ready.
+Plan: multiple uvicorn workers; queue backpressure (429 when queue is deep); per-user rate
+limiting; /health (worker count + queue depth); retry with backoff on transient OpenAI/Qdrant
+errors; later GPU embedding and horizontal Celery workers.

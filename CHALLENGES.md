@@ -1,18 +1,6 @@
 # Challenges Log
 
-A living record of problems we hit during development and how we solved them.
-
-**Purpose:** so we never re-debug the same issue twice. Before chasing a new bug,
-search this file — a similar problem may already be solved here.
-
-**Process (continuous, not one-time):**
-1. When a problem is **confirmed to be a real problem worth tracking** (after we
-   discuss and agree it matters — not the instant it's first noticed), add a
-   two-line problem statement under **Resolved Challenges** (status: Open) or
-   **Future Problems** if we decide to defer it.
-2. Once we **agree on a solution**, fill in root cause + fix details and mark it Resolved.
-3. Each entry captures the full journey: how it surfaced, how we stated it,
-   the root cause, and how we fixed it.
+Problems identified during development and the solutions we landed on.
 
 ---
 

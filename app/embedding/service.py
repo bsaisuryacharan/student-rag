@@ -27,6 +27,22 @@ class EmbeddingService:
     async def _embed_texts(self, texts: list[str]) -> list[list[float]]:
         return await asyncio.to_thread(self.dense.encode, texts)
 
+    # Embed an explicit list of chunks and INSERT them (no full-document delete).
+    # Used by incremental re-indexing to embed only the changed pages' chunks.
+    # The caller is responsible for deleting stale page vectors first.
+    async def embed_chunks(self, document_id: str, chunks: list) -> int:
+        if not chunks:
+            return 0
+        await self.store.ensure_collection()
+        texts = [c.text for c in chunks]
+        vectors = await self._embed_texts(texts)
+        if vectors and len(vectors[0]) != self.settings.embedding_dim:
+            raise ValueError(f"Embedding dim {len(vectors[0])} != configured {self.settings.embedding_dim}")
+        sparse_vectors = await asyncio.to_thread(self.sparse.encode, texts)
+        await self.store.insert(document_id, chunks, vectors, sparse_vectors)
+        logger.info("Embedded %d chunk(s) for %s (incremental)", len(chunks), document_id)
+        return len(chunks)
+
     # The embed_document method is responsible for taking a document ID, retrieving the corresponding DocumentRecord, and then processing the chunked document to generate vector embeddings for each chunk of text. It first checks if the document has been chunked by looking for the chunks.json file. If the file exists, it reads the chunked document and uses the _embed_texts method to generate embeddings for each chunk of text. The resulting vectors are then upserted into the Qdrant vector database using the VectorStore's upsert method. Finally, it updates the status of the document to "embedded" and returns the number of chunks that were embedded. If the document is not found, not chunked, or if there are no chunks to embed, appropriate errors are raised.
     async def embed_document(self, document_id: str) -> int:
         record = await self.ingestion.get(document_id)

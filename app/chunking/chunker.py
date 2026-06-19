@@ -67,8 +67,7 @@ class SemanticChunker:
     # The chunk method is the main method of the SemanticChunker class, which takes a ParsedDocument and an upload date as input and returns a list of Chunk objects. The method first splits the parsed document into segments using the _split_segments method, and then applies a hard split to any segments that exceed the target token count using the _hard_split method. After obtaining a list of segments that are within the target token count, the method iterates through these segments and creates chunks of text by packing paragraphs together until the target token count is reached. It also allows for some overlap between chunks to maintain context. Each chunk is associated with metadata that includes the original document name, subject, chapter, page number, and upload date. Finally, the method returns a list of Chunk objects that can be stored in the vector database for later retrieval and use in generating answers to user queries.
     def _chunk_page(self, page_units: list[_Segment], page_num: int,
                     doc_id: str, doc_name: str, subject: str | None,
-                    upload_date: datetime, user_id: str | None,
-                    start_index: int) -> list[Chunk]:
+                    upload_date: datetime, user_id: str | None) -> list[Chunk]:
         """
         Chunk one page's segments in isolation — overlap never crosses a page
         boundary so content from one page cannot contaminate another page's chunks.
@@ -109,8 +108,11 @@ class SemanticChunker:
             # which part of the page's content this chunk covers.
             text = f"{page_label}\n{text}"
 
+            # Page-scoped chunk id: {doc}:p{page}:{within-page index}. This keeps a
+            # page's chunk ids stable regardless of other pages, so incremental
+            # re-indexing can delete/replace exactly one page's vectors.
             chunks.append(Chunk(
-                chunk_id=f"{doc_id}:{start_index + i}",
+                chunk_id=f"{doc_id}:p{page_num}:{i}",
                 text=text,
                 metadata=ChunkMetadata(
                     document_name=doc_name, subject=subject,
@@ -133,7 +135,7 @@ class SemanticChunker:
             page_chunks = self._chunk_page(
                 page_segments[page_num], page_num,
                 parsed.document_id, parsed.document_name, parsed.subject,
-                upload_date, user_id, start_index=len(chunks),
+                upload_date, user_id,
             )
             chunks.extend(page_chunks)
         return chunks

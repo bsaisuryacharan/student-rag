@@ -47,11 +47,7 @@ class VectorStore:
 
 
     # The upsert method is responsible for inserting or updating chunks of text along with their corresponding dense and sparse vector embeddings into the Qdrant collection. It first deletes any existing points in the collection that are associated with the given document_id to ensure idempotency. Then, it iterates through the provided chunks and their corresponding vectors, creating a list of PointStruct objects that contain the chunk text, metadata, and both dense and sparse vector embeddings. Finally, it upserts these points into the collection, allowing for efficient storage and retrieval of the chunks based on their embeddings and metadata.
-    async def upsert(self, document_id: str, chunks, dense_vectors, sparse_vectors) -> None:
-        await self.client.delete(
-            self.collection,
-            points_selector=models.FilterSelector(filter=self._doc_filter(document_id)),
-        )
+    def _build_points(self, document_id: str, chunks, dense_vectors, sparse_vectors):
         points = []
         for chunk, dvec, svec in zip(chunks, dense_vectors, sparse_vectors):
             payload = {
@@ -67,7 +63,26 @@ class VectorStore:
                 },
                 payload=payload,
             ))
+        return points
+
+    # Insert/overwrite points WITHOUT deleting the rest of the document. Point ids are
+    # a deterministic uuid5 of chunk_id, so re-inserting a page's chunks overwrites that
+    # page's existing points in place. Used by incremental re-indexing to add just the
+    # changed pages' chunks. (Callers delete stale points first via delete_pages.)
+    async def insert(self, document_id: str, chunks, dense_vectors, sparse_vectors) -> None:
+        if not chunks:
+            return
+        points = self._build_points(document_id, chunks, dense_vectors, sparse_vectors)
         await self.client.upsert(self.collection, points=points)
+
+    # Full replace: drop every vector for the document, then insert all chunks.
+    # Used by the initial embed of a freshly uploaded document.
+    async def upsert(self, document_id: str, chunks, dense_vectors, sparse_vectors) -> None:
+        await self.client.delete(
+            self.collection,
+            points_selector=models.FilterSelector(filter=self._doc_filter(document_id)),
+        )
+        await self.insert(document_id, chunks, dense_vectors, sparse_vectors)
 
     # The hybrid_search method performs a similarity search in the Qdrant collection based on both dense and sparse vector embeddings. It takes a dense vector, a sparse vector, and various optional filters to narrow down the search results. The method constructs a query filter based on the provided parameters and then calls the query_points method of the Qdrant client with a FusionQuery that combines the dense and sparse queries using the Reciprocal Rank Fusion (RRF) method. The results are returned as a list of points that match the query criteria, allowing for more comprehensive search results that leverage both types of embeddings.
     async def hybrid_search(self, dense_vec, sparse_vec, top_k, *,
@@ -105,6 +120,19 @@ class VectorStore:
                 self.collection,
                 points_selector=models.FilterSelector(filter=self._doc_filter(document_id)),
             )
+
+    # Delete vectors for specific pages of a document (document_id AND page in pages).
+    # Used by incremental re-indexing to drop only the changed/removed pages' vectors,
+    # leaving every other page's vectors untouched.
+    async def delete_pages(self, document_id: str, pages: list[int]) -> None:
+        if not pages or not await self.client.collection_exists(self.collection):
+            return
+        qfilter = models.Filter(must=[
+            models.FieldCondition(key="document_id", match=models.MatchValue(value=document_id)),
+            models.FieldCondition(key="page", match=models.MatchAny(any=list(pages))),
+        ])
+        await self.client.delete(
+            self.collection, points_selector=models.FilterSelector(filter=qfilter))
 
     def _doc_filter(self, document_id: str) -> models.Filter:
         return models.Filter(must=[models.FieldCondition(

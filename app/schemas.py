@@ -42,11 +42,15 @@ class DocumentRecord(BaseModel):
     size_bytes: int
     sha256: str
     storage_path: str
-    error: str | None = None 
+    error: str | None = None
     status: DocumentStatus = DocumentStatus.uploaded
     upload_date: datetime
     page_count: int | None = None
     user_id: str | None = None
+    # Per-page content fingerprint: {page number (as str) -> sha256 of page text}.
+    # Used by incremental re-indexing to detect which pages changed on re-upload,
+    # so only those pages are re-chunked and re-embedded.
+    page_hashes: dict[str, str] = {}
 
 class UploadResponse(BaseModel):
     document_id: str

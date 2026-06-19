@@ -1,4 +1,5 @@
 # app/parsing/service.py
+import hashlib
 import logging
 from pathlib import Path
 
@@ -12,6 +13,15 @@ from app.storage import RAW_BLOB, PARSED_BLOB
 
 
 logger = logging.getLogger("app.parsing")
+
+
+def hash_pages(parsed: ParsedDocument) -> dict[str, str]:
+    """Per-page content fingerprint: {page number (as str) -> sha256 of page text}.
+    Used by incremental re-indexing to detect exactly which pages changed."""
+    return {
+        str(page.page): hashlib.sha256(page.text.encode("utf-8")).hexdigest()
+        for page in parsed.pages
+    }
 
 class ParsingService:
     def __init__(self, settings: Settings, openai: AsyncOpenAI, ingestion: IngestionService) -> None:
@@ -54,6 +64,9 @@ class ParsingService:
             await self.storage.put_blob(
                 document_id, PARSED_BLOB, parsed.model_dump_json(indent=2).encode("utf-8"))
             record.status = DocumentStatus.parsed
+            record.page_count = len(pages)
+            # Fingerprint each page so a later re-upload can diff page-by-page
+            record.page_hashes = hash_pages(parsed)
             await self.ingestion.save_record(record)
             logger.info("Parsed %s: %d pages", document_id, len(pages))
             return parsed

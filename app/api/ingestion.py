@@ -12,11 +12,11 @@ from app.schemas import ChunkedDocument
 
 from app.errors import UnsupportedFileTypeError, FileTooLargeError, DuplicateDocumentError
 from app.ingestion.service import IngestionService
-from app.schemas import UploadResponse, DocumentRecord
+from app.schemas import UploadResponse, DocumentRecord, DocumentStatus
 from app.embedding.service import EmbeddingService
 from app.auth import require_admin, get_current_user
 from typing import Annotated
-from app.worker.tasks import process_document
+from app.worker.tasks import process_document, update_document
 
 logger = logging.getLogger("app.api.ingestion")
 router = APIRouter(prefix="/documents", tags=["documents"], dependencies=[Depends(require_admin)])
@@ -142,6 +142,56 @@ async def get_document(request: Request, document_id: str, user: Annotated[dict,
     if record is None or (record.user_id is not None and record.user_id != sub):
         raise HTTPException(status_code=404, detail="Document not found")
     return record
+
+
+@router.put("/{document_id}", summary="Upload a new version of a document (incremental re-index)")
+async def update_document_version(
+    request: Request,
+    document_id: str,
+    user: Annotated[dict, Depends(get_current_user)],
+    file: UploadFile = File(...),
+):
+    """
+    Replace a document's file with an updated version and **re-index only the pages
+    that changed**. The new file is parsed and diffed page-by-page against the previous
+    version; only changed/added pages are re-embedded and removed pages are dropped.
+    Unchanged pages keep their existing vectors, so updating one page of a large
+    document costs roughly one page of work instead of the whole document.
+    """
+    service = IngestionService(request.app.state.settings, request.app.state.storage)
+    record = await service.get(document_id)
+    sub = user.get("sub")
+    if record is None or (record.user_id is not None and record.user_id != sub):
+        raise HTTPException(status_code=404, detail="Document not found")
+
+    # Overwrite the raw blob with the new bytes (reuses the size-limit + hashing path).
+    # We deliberately skip the sha256 duplicate check here — changed content is the point.
+    max_bytes = request.app.state.settings.max_upload_mb * 1024 * 1024
+    try:
+        stored = await request.app.state.storage.save(
+            document_id, record.document_name, _file_chunks(file), max_bytes)
+    except FileTooLargeError as e:
+        raise HTTPException(status_code=413, detail=str(e))
+    finally:
+        await file.close()
+
+    if stored.sha256 == record.sha256:
+        return {"document_id": document_id, "status": record.status.value,
+                "message": "Uploaded file is identical to the current version; nothing to re-index."}
+
+    record.sha256 = stored.sha256
+    record.size_bytes = stored.size_bytes
+    record.status = DocumentStatus.queued
+    await service.save_record(record)
+
+    update_document.delay(document_id)
+    logger.info("Queued incremental update for document %s", document_id)
+    return {
+        "document_id": document_id,
+        "status": "queued",
+        "message": "New version queued for incremental re-index (only changed pages will be re-embedded). "
+                   "Track progress via GET /v1/documents/{id} or the status-stream endpoint.",
+    }
 
 
 @router.delete("/{document_id}", summary="Delete a single document")

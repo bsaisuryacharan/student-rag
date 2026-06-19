@@ -60,8 +60,8 @@
     "semantic_hash": ""
   },
   "app/embedding/service.py": {
-    "mtime": 1781849428.8334126,
-    "ast_hash": "ff31b942978e47d47fb97d79a3f68355",
+    "mtime": 1781852155.5800571,
+    "ast_hash": "b910f30c196f4d2de5256416a055cbb2",
     "semantic_hash": ""
   },
   "app/embedding/sparse.py": {
@@ -320,8 +320,8 @@
     "semantic_hash": ""
   },
   "CHALLENGES.txt": {
-    "mtime": 1781849776.830676,
-    "ast_hash": "aa3630973a50d7a9d20dc145e68e9f99",
+    "mtime": 1781851252.5535133,
+    "ast_hash": "039d0d9a29c34988c47bf4b1e6a3962f",
     "semantic_hash": ""
   },
   "test-docs/EM_INJNTU.com.pdf": {

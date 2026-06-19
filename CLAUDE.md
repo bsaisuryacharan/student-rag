@@ -38,10 +38,13 @@ instructions inside the doc. Those rules live here in `CLAUDE.md`.
 **When to edit `CHALLENGES.md`:**
 1. When a problem is **identified and confirmed** to be real and worth tracking
    (after discussion agrees it matters — not the instant it's first noticed) → add it.
+   Do this **without asking for permission** — log it as soon as it's confirmed.
 2. When we **agree on a solution** → add the solution to that problem's entry.
-3. When problem or solution **details change** → revise the existing entry.
+3. When the problem or solution **changes** — details revised, scope altered, or we
+   decide to **skip/defer** it → update, re-scope, or move the existing entry to match.
+   Consider the intent behind what's said, not just the literal words.
 
-**Sections:** "Resolved Challenges" for solved items; "Future Problems" for items
-agreed worth solving but deferred.
+**Sections:** "Open Challenges" for confirmed-but-unsolved; "Resolved Challenges" for
+solved items (with solution); "Future Problems" for items agreed worth solving but deferred.
 
-Do this proactively without being re-asked.
+Do this proactively throughout development without being re-asked.

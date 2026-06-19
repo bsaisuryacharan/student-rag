@@ -110,6 +110,27 @@ with no terminal state.
 
 ---
 
+## Open Challenges
+
+Confirmed problems, not yet solved.
+
+### C-009 · Citation points to the wrong page (BM25 "2" token inflation)
+**Problem:** For set/number-specific queries the *answer* is correct, but the top-ranked
+citation can point to the wrong page — e.g. "Part B Set 2" returns the right Set 2 content
+yet cites page 1. A student following the citation lands on the wrong page.
+
+- **How identified:** Verification battery across Set 1–4 (after the page-isolation fix).
+  Set 2's answer was correct, but its #1 citation was page 1 (score 0.833) instead of page 2.
+- **Root cause:** Page 1's Part-A is full of `(2M)` mark annotations, so the token "2"
+  appears many times on that page. BM25 inflates page 1's rank for any query containing
+  "2" / "Set 2". The final answer stayed correct only because the generation prompt makes
+  the LLM pick the correctly-labelled block from context, masking the bad ranking.
+- **Solution:** _(pending — under discussion. Candidate fixes: boost the page/set label
+  match weight, parse the queried set/page and filter retrieval by it, or strip noisy
+  mark annotations like "(2M)" before sparse indexing.)_
+
+---
+
 ## Future Problems
 
 Problems we've identified and agreed are worth solving, but deferred for later.

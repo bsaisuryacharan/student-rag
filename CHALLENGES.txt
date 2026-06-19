@@ -128,3 +128,14 @@ Correctness is unaffected; only efficiency. Edits before the change point are st
 Plan: content-based diffing (anchor on text windows/shingles instead of page numbers) so only
 genuinely new/changed content re-indexes regardless of reflow; and finer segmentation for
 single-page formats so they can be partially re-indexed too.
+
+
+F-005  Embedding has no retry or mid-document resume
+Problem: Embedding a document is all-or-nothing — it encodes every chunk and does one vector
+write at the end. If that write fails (e.g. a transient vector-store/network error) or the
+process crashes, no progress is saved, there is no automatic retry, and a re-run re-embeds every
+chunk from the start instead of resuming. (Encoders are local, so only the vector write is a
+network call; the document is marked failed, not left stuck.)
+Plan: embed and write in batches, wrap each batch in retry-with-backoff for transient errors,
+and skip pages already present in the store so a retry resumes only the remaining work — easy
+now that chunk ids are page-scoped and idempotent.

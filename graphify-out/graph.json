@@ -375,7 +375,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_app_api_routes_py",
-      "community": 9,
+      "community": 27,
       "norm_label": "routes.py"
     },
     {
@@ -385,7 +385,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "api_routes_health",
-      "community": 9,
+      "community": 27,
       "norm_label": "health()"
     },
     {
@@ -395,7 +395,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "api_routes_ready",
-      "community": 9,
+      "community": 27,
       "norm_label": "ready()"
     },
     {
@@ -405,7 +405,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_api_routes_py_request",
-      "community": 9,
+      "community": 27,
       "norm_label": "request"
     },
     {
@@ -415,7 +415,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "response",
-      "community": 9,
+      "community": 27,
       "norm_label": "response"
     },
     {
@@ -595,7 +595,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "chunking_chunker",
-      "community": 1,
+      "community": 5,
       "norm_label": "chunker.py"
     },
     {
@@ -605,7 +605,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "chunking_chunker_segment",
-      "community": 1,
+      "community": 5,
       "norm_label": "_segment"
     },
     {
@@ -615,7 +615,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "chunking_chunker_semanticchunker",
-      "community": 1,
+      "community": 5,
       "norm_label": "semanticchunker"
     },
     {
@@ -625,7 +625,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "chunking_chunker_semanticchunker_init",
-      "community": 1,
+      "community": 5,
       "norm_label": ".__init__()"
     },
     {
@@ -635,7 +635,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "app_chunking_chunker_py_settings",
-      "community": 1,
+      "community": 5,
       "norm_label": "settings"
     },
     {
@@ -645,7 +645,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "chunking_chunker_semanticchunker_ntokens",
-      "community": 1,
+      "community": 5,
       "norm_label": "._ntokens()"
     },
     {
@@ -655,7 +655,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "chunking_chunker_semanticchunker_split_segments",
-      "community": 1,
+      "community": 5,
       "norm_label": "._split_segments()"
     },
     {
@@ -665,7 +665,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "app_chunking_chunker_py_parseddocument",
-      "community": 1,
+      "community": 5,
       "norm_label": "parseddocument"
     },
     {
@@ -675,7 +675,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "chunking_chunker_semanticchunker_hard_split",
-      "community": 1,
+      "community": 5,
       "norm_label": "._hard_split()"
     },
     {
@@ -685,7 +685,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "chunking_chunker_semanticchunker_chunk_page",
-      "community": 1,
+      "community": 5,
       "norm_label": "._chunk_page()"
     },
     {
@@ -695,7 +695,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "datetime",
-      "community": 1,
+      "community": 5,
       "norm_label": "datetime"
     },
     {
@@ -705,7 +705,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "chunk",
-      "community": 1,
+      "community": 5,
       "norm_label": "chunk"
     },
     {
@@ -715,7 +715,7 @@
       "source_location": "L123",
       "_origin": "ast",
       "id": "chunking_chunker_semanticchunker_chunk",
-      "community": 1,
+      "community": 5,
       "norm_label": ".chunk()"
     },
     {
@@ -725,7 +725,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "chunking_chunker_rationale_71",
-      "community": 1,
+      "community": 5,
       "norm_label": "chunk one page's segments in isolation \u2014 overlap never crosses a page         bo"
     },
     {
@@ -735,7 +735,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "chunking_service",
-      "community": 2,
+      "community": 5,
       "norm_label": "service.py"
     },
     {
@@ -745,7 +745,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "chunking_service_chunkingservice",
-      "community": 2,
+      "community": 3,
       "norm_label": "chunkingservice"
     },
     {
@@ -805,7 +805,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_app_clients_py",
-      "community": 9,
+      "community": 1,
       "norm_label": "clients.py"
     },
     {
@@ -815,7 +815,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "app_clients_build_qdrant_client",
-      "community": 9,
+      "community": 1,
       "norm_label": "build_qdrant_client()"
     },
     {
@@ -825,7 +825,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "app_clients_py_settings",
-      "community": 9,
+      "community": 1,
       "norm_label": "settings"
     },
     {
@@ -835,7 +835,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "app_clients_py_asyncqdrantclient",
-      "community": 9,
+      "community": 1,
       "norm_label": "asyncqdrantclient"
     },
     {
@@ -845,7 +845,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_clients_build_openai_client",
-      "community": 9,
+      "community": 1,
       "norm_label": "build_openai_client()"
     },
     {
@@ -855,7 +855,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_clients_py_asyncopenai",
-      "community": 9,
+      "community": 1,
       "norm_label": "asyncopenai"
     },
     {
@@ -865,7 +865,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_config",
-      "community": 1,
+      "community": 9,
       "norm_label": "config.py"
     },
     {
@@ -875,7 +875,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_config_settings",
-      "community": 2,
+      "community": 5,
       "norm_label": "settings"
     },
     {
@@ -885,24 +885,24 @@
       "source_location": "",
       "_origin": "ast",
       "id": "basesettings",
-      "community": 2,
+      "community": 5,
       "norm_label": "basesettings"
     },
     {
       "label": ".is_prod()",
       "file_type": "code",
       "source_file": "app/config.py",
-      "source_location": "L65",
+      "source_location": "L70",
       "_origin": "ast",
       "id": "app_config_settings_is_prod",
-      "community": 2,
+      "community": 5,
       "norm_label": ".is_prod()"
     },
     {
       "label": "get_settings()",
       "file_type": "code",
       "source_file": "app/config.py",
-      "source_location": "L71",
+      "source_location": "L76",
       "_origin": "ast",
       "id": "app_config_get_settings",
       "community": 9,
@@ -925,7 +925,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "embedding_dense",
-      "community": 2,
+      "community": 9,
       "norm_label": "dense.py"
     },
     {
@@ -935,7 +935,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "embedding_dense_denseencoder",
-      "community": 2,
+      "community": 9,
       "norm_label": "denseencoder"
     },
     {
@@ -945,7 +945,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "embedding_dense_denseencoder_init",
-      "community": 2,
+      "community": 9,
       "norm_label": ".__init__()"
     },
     {
@@ -955,7 +955,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "embedding_dense_denseencoder_encode",
-      "community": 2,
+      "community": 9,
       "norm_label": ".encode()"
     },
     {
@@ -965,7 +965,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "embedding_dense_denseencoder_encode_one",
-      "community": 2,
+      "community": 9,
       "norm_label": ".encode_one()"
     },
     {
@@ -975,7 +975,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "embedding_service",
-      "community": 2,
+      "community": 9,
       "norm_label": "service.py"
     },
     {
@@ -985,7 +985,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "embedding_service_embeddingservice",
-      "community": 2,
+      "community": 1,
       "norm_label": "embeddingservice"
     },
     {
@@ -1055,37 +1055,37 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "embedding_service_embeddingservice_embed_texts",
-      "community": 2,
+      "community": 1,
       "norm_label": "._embed_texts()"
     },
     {
       "label": "._embed_in_batches()",
       "file_type": "code",
       "source_file": "app/embedding/service.py",
-      "source_location": "L35",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "embedding_service_embeddingservice_embed_in_batches",
-      "community": 2,
+      "community": 1,
       "norm_label": "._embed_in_batches()"
     },
     {
       "label": ".embed_chunks()",
       "file_type": "code",
       "source_file": "app/embedding/service.py",
-      "source_location": "L53",
+      "source_location": "L73",
       "_origin": "ast",
       "id": "embedding_service_embeddingservice_embed_chunks",
-      "community": 2,
+      "community": 1,
       "norm_label": ".embed_chunks()"
     },
     {
       "label": ".embed_document()",
       "file_type": "code",
       "source_file": "app/embedding/service.py",
-      "source_location": "L62",
+      "source_location": "L82",
       "_origin": "ast",
       "id": "embedding_service_embeddingservice_embed_document",
-      "community": 2,
+      "community": 1,
       "norm_label": ".embed_document()"
     },
     {
@@ -1095,7 +1095,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_app_embedding_sparse_py",
-      "community": 2,
+      "community": 9,
       "norm_label": "sparse.py"
     },
     {
@@ -1105,7 +1105,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "embedding_sparse_sparsevec",
-      "community": 2,
+      "community": 9,
       "norm_label": "sparsevec"
     },
     {
@@ -1115,7 +1115,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "embedding_sparse_sparseencoder",
-      "community": 2,
+      "community": 9,
       "norm_label": "sparseencoder"
     },
     {
@@ -1125,7 +1125,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "embedding_sparse_sparseencoder_init",
-      "community": 2,
+      "community": 9,
       "norm_label": ".__init__()"
     },
     {
@@ -1135,7 +1135,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "embedding_sparse_sparseencoder_encode",
-      "community": 2,
+      "community": 9,
       "norm_label": ".encode()"
     },
     {
@@ -1145,7 +1145,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "embedding_sparse_sparseencoder_encode_one",
-      "community": 2,
+      "community": 9,
       "norm_label": ".encode_one()"
     },
     {
@@ -1705,7 +1705,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "parsing_service",
-      "community": 1,
+      "community": 5,
       "norm_label": "service.py"
     },
     {
@@ -1735,7 +1735,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "parsing_service_parsingservice",
-      "community": 9,
+      "community": 1,
       "norm_label": "parsingservice"
     },
     {
@@ -1845,7 +1845,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "retrieval_service",
-      "community": 1,
+      "community": 9,
       "norm_label": "service.py"
     },
     {
@@ -1855,7 +1855,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "retrieval_service_retrievalservice",
-      "community": 5,
+      "community": 9,
       "norm_label": "retrievalservice"
     },
     {
@@ -1865,7 +1865,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "retrieval_service_retrievalservice_init",
-      "community": 2,
+      "community": 9,
       "norm_label": ".__init__()"
     },
     {
@@ -1875,7 +1875,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_retrieval_service_py_settings",
-      "community": 2,
+      "community": 9,
       "norm_label": "settings"
     },
     {
@@ -1885,7 +1885,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_retrieval_service_py_denseencoder",
-      "community": 2,
+      "community": 9,
       "norm_label": "denseencoder"
     },
     {
@@ -1895,7 +1895,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_retrieval_service_py_vectorstore",
-      "community": 2,
+      "community": 9,
       "norm_label": "vectorstore"
     },
     {
@@ -1905,7 +1905,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_retrieval_service_py_sparseencoder",
-      "community": 2,
+      "community": 9,
       "norm_label": "sparseencoder"
     },
     {
@@ -1915,7 +1915,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "retrieval_service_retrievalservice_embed_query",
-      "community": 5,
+      "community": 9,
       "norm_label": "._embed_query()"
     },
     {
@@ -1925,7 +1925,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "retrieval_service_retrievalservice_search",
-      "community": 5,
+      "community": 9,
       "norm_label": ".search()"
     },
     {
@@ -1935,7 +1935,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "app_retrieval_service_py_retrievedchunk",
-      "community": 5,
+      "community": 9,
       "norm_label": "retrievedchunk"
     },
     {
@@ -1945,7 +1945,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_schemas",
-      "community": 1,
+      "community": 5,
       "norm_label": "schemas.py"
     },
     {
@@ -1955,7 +1955,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_schemas_chunkmetadata",
-      "community": 1,
+      "community": 5,
       "norm_label": "chunkmetadata"
     },
     {
@@ -1975,7 +1975,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "app_schemas_chunk",
-      "community": 1,
+      "community": 5,
       "norm_label": "chunk"
     },
     {
@@ -2015,7 +2015,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "enum",
-      "community": 1,
+      "community": 2,
       "norm_label": "enum"
     },
     {
@@ -2055,7 +2055,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "app_schemas_parseddocument",
-      "community": 1,
+      "community": 5,
       "norm_label": "parseddocument"
     },
     {
@@ -2225,7 +2225,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage",
-      "community": 9,
+      "community": 26,
       "norm_label": "qdrantstorage"
     },
     {
@@ -2235,7 +2235,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage_init",
-      "community": 9,
+      "community": 26,
       "norm_label": ".__init__()"
     },
     {
@@ -2245,7 +2245,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "app_storage_py_asyncqdrantclient",
-      "community": 9,
+      "community": 26,
       "norm_label": "asyncqdrantclient"
     },
     {
@@ -2255,7 +2255,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "app_storage_py_settings",
-      "community": 9,
+      "community": 26,
       "norm_label": "settings"
     },
     {
@@ -2265,7 +2265,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage_ensure_collection",
-      "community": 9,
+      "community": 26,
       "norm_label": ".ensure_collection()"
     },
     {
@@ -2275,7 +2275,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage_filter",
-      "community": 9,
+      "community": 26,
       "norm_label": "._filter()"
     },
     {
@@ -2285,7 +2285,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "app_storage_py_filter",
-      "community": 9,
+      "community": 26,
       "norm_label": "filter"
     },
     {
@@ -2295,7 +2295,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage_point_id",
-      "community": 9,
+      "community": 26,
       "norm_label": "._point_id()"
     },
     {
@@ -2305,7 +2305,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage_save",
-      "community": 9,
+      "community": 26,
       "norm_label": ".save()"
     },
     {
@@ -2315,7 +2315,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage_put_blob",
-      "community": 9,
+      "community": 26,
       "norm_label": ".put_blob()"
     },
     {
@@ -2325,7 +2325,7 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage_scroll_payloads",
-      "community": 9,
+      "community": 26,
       "norm_label": "._scroll_payloads()"
     },
     {
@@ -2335,7 +2335,7 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage_get_blob",
-      "community": 9,
+      "community": 26,
       "norm_label": ".get_blob()"
     },
     {
@@ -2345,7 +2345,7 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage_list_blobs",
-      "community": 9,
+      "community": 26,
       "norm_label": ".list_blobs()"
     },
     {
@@ -2355,7 +2355,7 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "app_storage_qdrantstorage_cleanup",
-      "community": 9,
+      "community": 26,
       "norm_label": ".cleanup()"
     },
     {
@@ -2365,147 +2365,187 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "store_qdrant_store",
-      "community": 1,
+      "community": 5,
       "norm_label": "qdrant_store.py"
     },
     {
       "label": "VectorStore",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L13",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore",
-      "community": 14,
+      "community": 9,
       "norm_label": "vectorstore"
     },
     {
       "label": ".__init__()",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_init",
-      "community": 14,
+      "community": 5,
       "norm_label": ".__init__()"
     },
     {
       "label": "AsyncQdrantClient",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "app_store_qdrant_store_py_asyncqdrantclient",
-      "community": 14,
+      "community": 5,
       "norm_label": "asyncqdrantclient"
     },
     {
       "label": "Settings",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "app_store_qdrant_store_py_settings",
-      "community": 14,
+      "community": 5,
       "norm_label": "settings"
+    },
+    {
+      "label": ".text_hash()",
+      "file_type": "code",
+      "source_file": "app/store/qdrant_store.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "store_qdrant_store_vectorstore_text_hash",
+      "community": 9,
+      "norm_label": ".text_hash()"
     },
     {
       "label": ".ensure_collection()",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L21",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_ensure_collection",
-      "community": 14,
+      "community": 9,
       "norm_label": ".ensure_collection()"
+    },
+    {
+      "label": "._ensure_payload_indexes()",
+      "file_type": "code",
+      "source_file": "app/store/qdrant_store.py",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "store_qdrant_store_vectorstore_ensure_payload_indexes",
+      "community": 9,
+      "norm_label": "._ensure_payload_indexes()"
     },
     {
       "label": "._build_points()",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L50",
+      "source_location": "L69",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_build_points",
-      "community": 14,
+      "community": 9,
       "norm_label": "._build_points()"
     },
     {
       "label": ".insert()",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L72",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_insert",
-      "community": 14,
+      "community": 9,
       "norm_label": ".insert()"
     },
     {
       "label": ".upsert()",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L80",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_upsert",
-      "community": 14,
+      "community": 9,
       "norm_label": ".upsert()"
     },
     {
       "label": ".hybrid_search()",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L88",
+      "source_location": "L111",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_hybrid_search",
-      "community": 14,
+      "community": 9,
       "norm_label": ".hybrid_search()"
     },
     {
       "label": ".delete_document()",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L117",
+      "source_location": "L140",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_delete_document",
-      "community": 14,
+      "community": 9,
       "norm_label": ".delete_document()"
     },
     {
       "label": ".delete_pages()",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L127",
+      "source_location": "L150",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_delete_pages",
-      "community": 14,
+      "community": 9,
       "norm_label": ".delete_pages()"
+    },
+    {
+      "label": ".existing_chunk_hashes()",
+      "file_type": "code",
+      "source_file": "app/store/qdrant_store.py",
+      "source_location": "L164",
+      "_origin": "ast",
+      "id": "store_qdrant_store_vectorstore_existing_chunk_hashes",
+      "community": 9,
+      "norm_label": ".existing_chunk_hashes()"
+    },
+    {
+      "label": ".delete_orphans()",
+      "file_type": "code",
+      "source_file": "app/store/qdrant_store.py",
+      "source_location": "L187",
+      "_origin": "ast",
+      "id": "store_qdrant_store_vectorstore_delete_orphans",
+      "community": 9,
+      "norm_label": ".delete_orphans()"
     },
     {
       "label": "._doc_filter()",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L137",
+      "source_location": "L200",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_doc_filter",
-      "community": 14,
+      "community": 9,
       "norm_label": "._doc_filter()"
     },
     {
       "label": "Filter",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L137",
+      "source_location": "L200",
       "_origin": "ast",
       "id": "app_store_qdrant_store_py_filter",
-      "community": 14,
+      "community": 9,
       "norm_label": "filter"
     },
     {
       "label": ".count()",
       "file_type": "code",
       "source_file": "app/store/qdrant_store.py",
-      "source_location": "L143",
+      "source_location": "L206",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_count",
-      "community": 14,
+      "community": 9,
       "norm_label": ".count()"
     },
     {
@@ -2535,7 +2575,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "worker_tasks",
-      "community": 9,
+      "community": 1,
       "norm_label": "tasks.py"
     },
     {
@@ -2545,7 +2585,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "worker_tasks_process",
-      "community": 9,
+      "community": 1,
       "norm_label": "_process()"
     },
     {
@@ -2555,7 +2595,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "worker_tasks_update",
-      "community": 9,
+      "community": 1,
       "norm_label": "_update()"
     },
     {
@@ -2565,7 +2605,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "worker_tasks_mark_failed",
-      "community": 9,
+      "community": 1,
       "norm_label": "_mark_failed()"
     },
     {
@@ -2575,7 +2615,7 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "worker_tasks_process_document",
-      "community": 9,
+      "community": 1,
       "norm_label": "process_document()"
     },
     {
@@ -2585,7 +2625,7 @@
       "source_location": "L142",
       "_origin": "ast",
       "id": "worker_tasks_update_document",
-      "community": 9,
+      "community": 1,
       "norm_label": "update_document()"
     },
     {
@@ -2595,7 +2635,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "worker_tasks_ping",
-      "community": 9,
+      "community": 1,
       "norm_label": "ping()"
     },
     {
@@ -2605,8 +2645,78 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "worker_tasks_rationale_50",
-      "community": 9,
+      "community": 1,
       "norm_label": "incremental re-index. the new file has already been written over the document's"
+    },
+    {
+      "label": "embed_gpu_benchmark.py",
+      "file_type": "code",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "embed_gpu_benchmark",
+      "community": 14,
+      "norm_label": "embed_gpu_benchmark.py"
+    },
+    {
+      "label": "pick_device()",
+      "file_type": "code",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "embed_gpu_benchmark_pick_device",
+      "community": 14,
+      "norm_label": "pick_device()"
+    },
+    {
+      "label": "fetch_text()",
+      "file_type": "code",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "embed_gpu_benchmark_fetch_text",
+      "community": 14,
+      "norm_label": "fetch_text()"
+    },
+    {
+      "label": "build_chunks()",
+      "file_type": "code",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "embed_gpu_benchmark_build_chunks",
+      "community": 14,
+      "norm_label": "build_chunks()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L90",
+      "_origin": "ast",
+      "id": "embed_gpu_benchmark_main",
+      "community": 14,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Embedding throughput benchmark \u2014 how long to embed ~1 GB of text? ==============",
+      "file_type": "rationale",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "embed_gpu_benchmark_rationale_1",
+      "community": 14,
+      "norm_label": "embedding throughput benchmark \u2014 how long to embed ~1 gb of text? =============="
+    },
+    {
+      "label": "Slice text into chunk_chars-sized pieces, cycling through the text to     reach",
+      "file_type": "rationale",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "embed_gpu_benchmark_rationale_78",
+      "community": 14,
+      "norm_label": "slice text into chunk_chars-sized pieces, cycling through the text to     reach"
     },
     {
       "label": "load_test.py",
@@ -2715,7 +2825,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_scripts_cleanup_duplicates_py",
-      "community": 13,
+      "community": 9,
       "norm_label": "cleanup_duplicates.py"
     },
     {
@@ -2725,7 +2835,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "scripts_cleanup_duplicates_main",
-      "community": 13,
+      "community": 9,
       "norm_label": "main()"
     },
     {
@@ -8462,9 +8572,9 @@
       "source_file": "app/embedding/service.py",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embedding_service_embeddingservice",
-      "target": "embedding_service_embeddingservice_embed_in_batches",
-      "confidence_score": 1.0
+      "target": "embedding_service_embeddingservice_embed_in_batches"
     },
     {
       "relation": "method",
@@ -8823,9 +8933,9 @@
       "source_file": "app/embedding/service.py",
       "source_location": "L41",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embedding_service_embeddingservice_embed_in_batches",
-      "target": "embedding_service_embeddingservice_embed_texts",
-      "confidence_score": 1.0
+      "target": "embedding_service_embeddingservice_embed_texts"
     },
     {
       "relation": "calls",
@@ -8834,9 +8944,9 @@
       "source_file": "app/embedding/service.py",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embedding_service_embeddingservice_embed_chunks",
-      "target": "embedding_service_embeddingservice_embed_in_batches",
-      "confidence_score": 1.0
+      "target": "embedding_service_embeddingservice_embed_in_batches"
     },
     {
       "relation": "calls",
@@ -8845,9 +8955,9 @@
       "source_file": "app/embedding/service.py",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embedding_service_embeddingservice_embed_document",
-      "target": "embedding_service_embeddingservice_embed_in_batches",
-      "confidence_score": 1.0
+      "target": "embedding_service_embeddingservice_embed_in_batches"
     },
     {
       "relation": "contains",
@@ -12237,6 +12347,16 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/store/qdrant_store.py",
+      "source_location": "L187",
+      "weight": 1.0,
+      "source": "store_qdrant_store_vectorstore",
+      "target": "store_qdrant_store_vectorstore_delete_orphans",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/store/qdrant_store.py",
       "source_location": "L127",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -12267,6 +12387,26 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/store/qdrant_store.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "store_qdrant_store_vectorstore",
+      "target": "store_qdrant_store_vectorstore_ensure_payload_indexes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/store/qdrant_store.py",
+      "source_location": "L164",
+      "weight": 1.0,
+      "source": "store_qdrant_store_vectorstore",
+      "target": "store_qdrant_store_vectorstore_existing_chunk_hashes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/store/qdrant_store.py",
       "source_location": "L72",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -12292,6 +12432,16 @@
       "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore",
       "target": "store_qdrant_store_vectorstore_insert"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/store/qdrant_store.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "store_qdrant_store_vectorstore",
+      "target": "store_qdrant_store_vectorstore_text_hash",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -12363,6 +12513,28 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/store/qdrant_store.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "store_qdrant_store_vectorstore_build_points",
+      "target": "store_qdrant_store_vectorstore_text_hash",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/store/qdrant_store.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "store_qdrant_store_vectorstore_ensure_collection",
+      "target": "store_qdrant_store_vectorstore_ensure_payload_indexes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/store/qdrant_store.py",
       "source_location": "L75",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -12418,11 +12590,44 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/store/qdrant_store.py",
+      "source_location": "L191",
+      "weight": 1.0,
+      "source": "store_qdrant_store_vectorstore_delete_orphans",
+      "target": "store_qdrant_store_vectorstore_delete_document",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/store/qdrant_store.py",
       "source_location": "L130",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore_delete_pages",
       "target": "app_store_qdrant_store_py_filter"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/store/qdrant_store.py",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "store_qdrant_store_vectorstore_existing_chunk_hashes",
+      "target": "app_store_qdrant_store_py_filter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/store/qdrant_store.py",
+      "source_location": "L193",
+      "weight": 1.0,
+      "source": "store_qdrant_store_vectorstore_delete_orphans",
+      "target": "app_store_qdrant_store_py_filter",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -12559,6 +12764,99 @@
       "confidence_score": 1.0,
       "source": "worker_tasks_update_document",
       "target": "worker_tasks_mark_failed"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "embed_gpu_benchmark",
+      "target": "embed_gpu_benchmark_build_chunks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "embed_gpu_benchmark",
+      "target": "embed_gpu_benchmark_fetch_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "embed_gpu_benchmark",
+      "target": "embed_gpu_benchmark_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "embed_gpu_benchmark",
+      "target": "embed_gpu_benchmark_pick_device",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "embed_gpu_benchmark_rationale_1",
+      "target": "embed_gpu_benchmark",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "embed_gpu_benchmark_main",
+      "target": "embed_gpu_benchmark_pick_device",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "embed_gpu_benchmark_main",
+      "target": "embed_gpu_benchmark_fetch_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "embed_gpu_benchmark_main",
+      "target": "embed_gpu_benchmark_build_chunks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "embed_gpu_benchmark.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "embed_gpu_benchmark_rationale_78",
+      "target": "embed_gpu_benchmark_build_chunks",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13696,5 +13994,5 @@
       "source_file": "codeDoc.md"
     }
   ],
-  "built_at_commit": "f8a0cf63cd9fb224e43d5b9cf51d7cfbfc34625e"
+  "built_at_commit": "a038c48c06c38b734fd5ce73cef6674a8828cca8"
 }

@@ -50,8 +50,8 @@
     "semantic_hash": ""
   },
   "app/config.py": {
-    "mtime": 1781697686.9151373,
-    "ast_hash": "8dbd87c2e4265039df8cd9b1ca6104d0",
+    "mtime": 1781866141.6291082,
+    "ast_hash": "eaa513929c66993fd0945391b435e5d7",
     "semantic_hash": ""
   },
   "app/embedding/__init__.py": {
@@ -60,8 +60,8 @@
     "semantic_hash": ""
   },
   "app/embedding/service.py": {
-    "mtime": 1781852155.5800571,
-    "ast_hash": "b910f30c196f4d2de5256416a055cbb2",
+    "mtime": 1781866236.3445656,
+    "ast_hash": "daa1edbf3b9a68a313d04c9a1ccc6ebc",
     "semantic_hash": ""
   },
   "app/embedding/sparse.py": {
@@ -145,8 +145,8 @@
     "semantic_hash": ""
   },
   "app/store/qdrant_store.py": {
-    "mtime": 1781849415.4370894,
-    "ast_hash": "8c5a34c0a74c9e1de353a2cac3bf0536",
+    "mtime": 1781866413.8152351,
+    "ast_hash": "8d9411ce49e12b28a5f76cdd93d29368",
     "semantic_hash": ""
   },
   "app/worker/__init__.py": {
@@ -260,8 +260,8 @@
     "semantic_hash": ""
   },
   "codeDoc.md": {
-    "mtime": 1781781851.4184017,
-    "ast_hash": "ce1bdaaf9c113a708eab40092755b6d0",
+    "mtime": 1781854324.5754454,
+    "ast_hash": "d449184866a9e233881989caf13e409e",
     "semantic_hash": ""
   },
   "requirements.txt": {
@@ -320,8 +320,8 @@
     "semantic_hash": ""
   },
   "CHALLENGES.txt": {
-    "mtime": 1781851252.5535133,
-    "ast_hash": "039d0d9a29c34988c47bf4b1e6a3962f",
+    "mtime": 1781866939.4807644,
+    "ast_hash": "b291fc1eb681c0e677985923f7e3bcd3",
     "semantic_hash": ""
   },
   "test-docs/EM_INJNTU.com.pdf": {
@@ -347,6 +347,11 @@
   "test-docs/uml unit-3.pdf": {
     "mtime": 1781697004.7943385,
     "ast_hash": "6462cece5d160ebc89a28defb010324e",
+    "semantic_hash": ""
+  },
+  "embed_gpu_benchmark.py": {
+    "mtime": 1781852685.6489027,
+    "ast_hash": "cd979d279e6f8b4bfa326b1f4bda61bd",
     "semantic_hash": ""
   }
 }

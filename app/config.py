@@ -41,8 +41,10 @@ class Settings(BaseSettings):
     pdf_text_min_chars: int = 20        # a page below this many chars is treated as scanned -> vision OCR
 
      # Embeddings
-    embedding_dim: int = 384       # BAAI/bge-small-en-v1.5 native size
+    embedding_dim: int = 384       # 384-dim models (bge-small / all-MiniLM-L6-v2)
     embed_batch_size: int = 100
+    embed_max_retries: int = 3          # per-batch retries on transient embed/vector-store errors
+    embed_retry_base_delay: float = 0.5 # seconds; exponential backoff base (0.5, 1, 2, ...)
 
     # Retrieval
     retrieval_top_k: int = 5

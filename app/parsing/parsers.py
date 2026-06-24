@@ -1,4 +1,5 @@
 # app/parsing/parsers.py
+import asyncio
 import io
 
 import fitz                       # PyMuPDF
@@ -29,6 +30,7 @@ def parse_docx(data: bytes) -> list[PageUnit]:
     for table in doc.tables:                      # flatten tables to Markdown-ish rows
         for row in table.rows:
             lines.append(" | ".join(c.text.strip() for c in row.cells))
+            
     return [PageUnit(page=1, text="\n".join(lines).strip())]
 
 
@@ -91,19 +93,34 @@ def _extract_page_text(page: fitz.Page) -> str:
 
 
 async def parse_pdf(data: bytes, *, openai: AsyncOpenAI, vision_model: str,
-                    min_chars: int) -> list[PageUnit]:
-    pages: list[PageUnit] = []
+                    min_chars: int, ocr_concurrency: int = 4) -> list[PageUnit]:
+    # Pass 1 (fast, local): extract every page's text layer. Pages below min_chars are
+    # scanned and need vision OCR — rasterise them now and queue for parallel OCR.
     doc = fitz.open(stream=data, filetype="pdf")
     try:
+        text_by_page: dict[int, str] = {}
+        ocr_jobs: list[tuple[int, bytes]] = []   # (page number, png bytes)
         for i, page in enumerate(doc, start=1):
             text = _extract_page_text(page)
             if len(text) >= min_chars:            # has a real text layer
-                pages.append(PageUnit(page=i, text=text))
+                text_by_page[i] = text
             else:                                 # scanned/image page -> vision OCR
-                img_bytes = page.get_pixmap(dpi=200).tobytes("png")
-                pages.append(PageUnit(page=i, text=await ocr_image(openai, vision_model, img_bytes)))
+                ocr_jobs.append((i, page.get_pixmap(dpi=200).tobytes("png")))
     finally:
         doc.close()
+
+    # Pass 2 (network-bound): OCR all scanned pages concurrently, bounded by a semaphore
+    # so a long book doesn't fire dozens of vision calls at once and hit rate limits.
+    sem = asyncio.Semaphore(max(1, ocr_concurrency))
+
+    async def _ocr(page_num: int, img_bytes: bytes) -> tuple[int, str]:
+        async with sem:
+            return page_num, await ocr_image(openai, vision_model, img_bytes)
+
+    for page_num, text in await asyncio.gather(*(_ocr(n, b) for n, b in ocr_jobs)):
+        text_by_page[page_num] = text
+
+    pages = [PageUnit(page=n, text=text_by_page[n]) for n in sorted(text_by_page)]
     return pages
 
 

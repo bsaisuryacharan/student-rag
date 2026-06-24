@@ -6,7 +6,7 @@ from billiard.exceptions import SoftTimeLimitExceeded
 from qdrant_client import AsyncQdrantClient
 
 from app.config import get_settings
-from app.clients import build_qdrant_client, build_openai_client
+from app.clients import build_qdrant_client, build_openai_client, build_groq_client
 from app.storage import QdrantStorage
 from app.store.qdrant_store import VectorStore
 from app.embedding.sparse import SparseEncoder
@@ -29,12 +29,13 @@ _dense_encoder = DenseEncoder(_settings.embedding_model)
 
 async def _process(document_id: str) -> None:
     openai = build_openai_client(_settings)
+    groq = build_groq_client(_settings)
     qdrant = build_qdrant_client(_settings)
     try:
         storage = QdrantStorage(qdrant, _settings)
         vector_store = VectorStore(qdrant, _settings)
         ingestion = IngestionService(_settings, storage)
-        parsing = ParsingService(_settings, openai, ingestion)
+        parsing = ParsingService(_settings, groq, ingestion)
         chunking = ChunkingService(_settings, ingestion)
         embedding = EmbeddingService(_settings, _dense_encoder, vector_store, ingestion, _sparse_encoder)
 
@@ -44,6 +45,7 @@ async def _process(document_id: str) -> None:
     finally:
         await qdrant.close()
         await openai.close()
+        await groq.close()
 
 
 async def _update(document_id: str) -> None:
@@ -58,12 +60,13 @@ async def _update(document_id: str) -> None:
     not re-uploading every unchanged page's vectors.
     """
     openai = build_openai_client(_settings)
+    groq = build_groq_client(_settings)
     qdrant = build_qdrant_client(_settings)
     try:
         storage = QdrantStorage(qdrant, _settings)
         vector_store = VectorStore(qdrant, _settings)
         ingestion = IngestionService(_settings, storage)
-        parsing = ParsingService(_settings, openai, ingestion)
+        parsing = ParsingService(_settings, groq, ingestion)
         chunking = ChunkingService(_settings, ingestion)
         embedding = EmbeddingService(_settings, _dense_encoder, vector_store, ingestion, _sparse_encoder)
 
@@ -105,6 +108,7 @@ async def _update(document_id: str) -> None:
     finally:
         await qdrant.close()
         await openai.close()
+        await groq.close()
 
 
 async def _mark_failed(document_id: str, error: str) -> None:

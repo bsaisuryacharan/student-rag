@@ -14,6 +14,7 @@ class Settings(BaseSettings):
 
     # Secrets — no defaults, so a missing value fails at startup
     openai_api_key: str
+    groq_api_key: str                                # used for vision OCR (free tier)
     qdrant_api_key: str | None = None                # optional for local Qdrant
 
     # Qdrant
@@ -29,16 +30,17 @@ class Settings(BaseSettings):
     generation_model: str = "gpt-4o-mini"
 
     # Chunking tunables
-    chunk_target_tokens: int = 512
-    chunk_overlap_pct: int = 12
+    chunk_target_tokens: int = 2000
+    chunk_overlap_pct: int = 50
 
     # Ingestion / storage
     max_upload_mb: int = 25
     allowed_extensions: set[str] = {".pdf", ".docx", ".doc", ".txt", ".png", ".jpg", ".jpeg"}
 
     # Parsing
-    vision_model: str = "gpt-4o-mini"   # multimodal model for scans/handwriting (use gpt-4o for tougher handwriting)
+    vision_model: str = "meta-llama/llama-4-scout-17b-16e-instruct"  # Groq free-tier vision model
     pdf_text_min_chars: int = 20        # a page below this many chars is treated as scanned -> vision OCR
+    vision_concurrency: int = 4         # max concurrent OCR calls for scanned PDF pages (bounded for rate limits)
 
      # Embeddings
     embedding_dim: int = 384       # 384-dim models (bge-small / all-MiniLM-L6-v2)

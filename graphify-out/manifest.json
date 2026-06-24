@@ -15,17 +15,17 @@
     "semantic_hash": ""
   },
   "app/api/ingestion.py": {
-    "mtime": 1781849527.4821649,
+    "mtime": 1781950178.941477,
     "ast_hash": "66679a6db38f0324774ed87dae9590a0",
     "semantic_hash": ""
   },
   "app/api/routes.py": {
-    "mtime": 1781342644.1353338,
+    "mtime": 1781950182.0527406,
     "ast_hash": "95500047e749cd285c81fb030ae8e23b",
     "semantic_hash": ""
   },
   "app/api/search.py": {
-    "mtime": 1781701033.4319413,
+    "mtime": 1781950184.8203483,
     "ast_hash": "3dbc982d010635adcad30dff75bf6d1f",
     "semantic_hash": ""
   },
@@ -35,23 +35,23 @@
     "semantic_hash": ""
   },
   "app/chunking/chunker.py": {
-    "mtime": 1781849356.4917045,
-    "ast_hash": "33f313b641f8c831541cbfe03a223224",
+    "mtime": 1781952558.7007473,
+    "ast_hash": "d8645b809837648f4b91474c22dd2e4c",
     "semantic_hash": ""
   },
   "app/chunking/service.py": {
-    "mtime": 1781701083.8399193,
-    "ast_hash": "248630b80c84857f3db5a6d37e722ccb",
+    "mtime": 1781950877.7928262,
+    "ast_hash": "6cd9a7c6d44537f5fab528aad6ad0a6e",
     "semantic_hash": ""
   },
   "app/clients.py": {
-    "mtime": 1781342644.1361792,
-    "ast_hash": "6f77699e454844bd4a65c50834489561",
+    "mtime": 1781953800.2495508,
+    "ast_hash": "35f168aad16c7d68cf4feabeb0b30499",
     "semantic_hash": ""
   },
   "app/config.py": {
-    "mtime": 1781866141.6291082,
-    "ast_hash": "eaa513929c66993fd0945391b435e5d7",
+    "mtime": 1781954437.1599092,
+    "ast_hash": "9deb924f640488738489f84f795761b1",
     "semantic_hash": ""
   },
   "app/embedding/__init__.py": {
@@ -60,12 +60,12 @@
     "semantic_hash": ""
   },
   "app/embedding/service.py": {
-    "mtime": 1781866236.3445656,
+    "mtime": 1781950196.3928018,
     "ast_hash": "daa1edbf3b9a68a313d04c9a1ccc6ebc",
     "semantic_hash": ""
   },
   "app/embedding/sparse.py": {
-    "mtime": 1781342644.1369605,
+    "mtime": 1781950198.9353917,
     "ast_hash": "5abbe0f9e1518f272afade079aa5bb93",
     "semantic_hash": ""
   },
@@ -90,7 +90,7 @@
     "semantic_hash": ""
   },
   "app/ingestion/service.py": {
-    "mtime": 1781700959.0270128,
+    "mtime": 1781950201.6054757,
     "ast_hash": "2916560f0fc69edb553a9eb1cbe1f185",
     "semantic_hash": ""
   },
@@ -100,7 +100,7 @@
     "semantic_hash": ""
   },
   "app/main.py": {
-    "mtime": 1781697639.7191386,
+    "mtime": 1781950172.7366447,
     "ast_hash": "aed862cc8afa28c81711cad8a56d3d31",
     "semantic_hash": ""
   },
@@ -110,18 +110,18 @@
     "semantic_hash": ""
   },
   "app/parsing/parsers.py": {
-    "mtime": 1781786961.4197032,
-    "ast_hash": "b52c808a52db9816a1c3f50908af8a0e",
+    "mtime": 1781954466.7955012,
+    "ast_hash": "41bcc32252af5a13856c038da1a694ca",
     "semantic_hash": ""
   },
   "app/parsing/service.py": {
-    "mtime": 1781849382.2075622,
-    "ast_hash": "bb136e90739396e65a0c4dd7466c6688",
+    "mtime": 1781954477.2660034,
+    "ast_hash": "282d969d16af9eaf09915621d9c76c35",
     "semantic_hash": ""
   },
   "app/parsing/vision.py": {
-    "mtime": 1781342644.1390836,
-    "ast_hash": "bb9554b150ebe0c96b9d448616bf804c",
+    "mtime": 1781953655.8261166,
+    "ast_hash": "1647a35b85f46b13eae7289325854f45",
     "semantic_hash": ""
   },
   "app/retrieval/__init__.py": {
@@ -130,12 +130,12 @@
     "semantic_hash": ""
   },
   "app/retrieval/service.py": {
-    "mtime": 1781701016.909873,
+    "mtime": 1781950215.8371124,
     "ast_hash": "b5c49e233939a0d4b8d808f208a0da44",
     "semantic_hash": ""
   },
   "app/schemas.py": {
-    "mtime": 1781849303.7486625,
+    "mtime": 1781950175.4741488,
     "ast_hash": "4959131bce3d9070e19e2de9bb56971b",
     "semantic_hash": ""
   },
@@ -145,7 +145,7 @@
     "semantic_hash": ""
   },
   "app/store/qdrant_store.py": {
-    "mtime": 1781866413.8152351,
+    "mtime": 1781950218.5356224,
     "ast_hash": "8d9411ce49e12b28a5f76cdd93d29368",
     "semantic_hash": ""
   },
@@ -160,8 +160,8 @@
     "semantic_hash": ""
   },
   "app/worker/tasks.py": {
-    "mtime": 1781849503.8620903,
-    "ast_hash": "94d23a05aa101839c4b59ce9aa5129c6",
+    "mtime": 1781953849.554977,
+    "ast_hash": "51ab4f2d31bac2dd182e3d6ffc3e04bb",
     "semantic_hash": ""
   },
   "data/raw/181e2f36adb54920af11414e21efa2e4/chunks.json": {
@@ -295,7 +295,7 @@
     "semantic_hash": ""
   },
   "app/embedding/dense.py": {
-    "mtime": 1781697628.1078095,
+    "mtime": 1781950189.971888,
     "ast_hash": "207d30a271f3cb66a3109fa1133c75a9",
     "semantic_hash": ""
   },
@@ -320,8 +320,8 @@
     "semantic_hash": ""
   },
   "CHALLENGES.txt": {
-    "mtime": 1781866939.4807644,
-    "ast_hash": "b291fc1eb681c0e677985923f7e3bcd3",
+    "mtime": 1781954517.3666766,
+    "ast_hash": "2aaa88a81567571f057ac245d15845bc",
     "semantic_hash": ""
   },
   "test-docs/EM_INJNTU.com.pdf": {

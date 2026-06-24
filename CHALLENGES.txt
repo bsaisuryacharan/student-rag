@@ -111,6 +111,16 @@ Needs payload indexes on chunk_id and embedding_model, backfilled on existing co
 Commit a038c48 - app/config.py, app/store/qdrant_store.py, app/embedding/service.py
 
 
+C-012  Scanned-document parsing was slow and could hang the whole pipeline
+Problem: A scanned document with no text layer sends every page through a vision OCR model.
+The pages were processed one at a time, and a single OCR call had no timeout, so a many-page
+document took minutes and one slow/hung call could stall the entire job indefinitely.
+Solution: Give each OCR call a per-request timeout so a hung call fails fast instead of blocking
+forever. Split parsing into a fast local text-extraction pass followed by OCR of all scanned
+pages concurrently, bounded by a configurable semaphore to respect provider rate limits.
+Files: app/parsing/parsers.py, app/parsing/vision.py, app/parsing/service.py, app/config.py
+
+
 ==========================================================
 FUTURE PROBLEMS  (agreed worth solving, deferred)
 ==========================================================

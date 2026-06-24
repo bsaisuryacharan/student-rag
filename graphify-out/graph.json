@@ -595,138 +595,78 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "chunking_chunker",
-      "community": 5,
+      "community": 2,
       "norm_label": "chunker.py"
     },
     {
-      "label": "_Segment",
+      "label": "FixedChunker",
       "file_type": "code",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L20",
+      "source_location": "L10",
       "_origin": "ast",
-      "id": "chunking_chunker_segment",
-      "community": 5,
-      "norm_label": "_segment"
-    },
-    {
-      "label": "SemanticChunker",
-      "file_type": "code",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L25",
-      "_origin": "ast",
-      "id": "chunking_chunker_semanticchunker",
-      "community": 5,
-      "norm_label": "semanticchunker"
+      "id": "chunking_chunker_fixedchunker",
+      "community": 2,
+      "norm_label": "fixedchunker"
     },
     {
       "label": ".__init__()",
       "file_type": "code",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L26",
+      "source_location": "L11",
       "_origin": "ast",
-      "id": "chunking_chunker_semanticchunker_init",
-      "community": 5,
+      "id": "chunking_chunker_fixedchunker_init",
+      "community": 2,
       "norm_label": ".__init__()"
     },
     {
       "label": "Settings",
       "file_type": "code",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L26",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "app_chunking_chunker_py_settings",
-      "community": 5,
+      "community": 2,
       "norm_label": "settings"
     },
     {
-      "label": "._ntokens()",
+      "label": ".chunk()",
       "file_type": "code",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L31",
+      "source_location": "L16",
       "_origin": "ast",
-      "id": "chunking_chunker_semanticchunker_ntokens",
-      "community": 5,
-      "norm_label": "._ntokens()"
-    },
-    {
-      "label": "._split_segments()",
-      "file_type": "code",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L35",
-      "_origin": "ast",
-      "id": "chunking_chunker_semanticchunker_split_segments",
-      "community": 5,
-      "norm_label": "._split_segments()"
+      "id": "chunking_chunker_fixedchunker_chunk",
+      "community": 2,
+      "norm_label": ".chunk()"
     },
     {
       "label": "ParsedDocument",
       "file_type": "code",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L35",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "app_chunking_chunker_py_parseddocument",
-      "community": 5,
+      "community": 2,
       "norm_label": "parseddocument"
-    },
-    {
-      "label": "._hard_split()",
-      "file_type": "code",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L59",
-      "_origin": "ast",
-      "id": "chunking_chunker_semanticchunker_hard_split",
-      "community": 5,
-      "norm_label": "._hard_split()"
-    },
-    {
-      "label": "._chunk_page()",
-      "file_type": "code",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L68",
-      "_origin": "ast",
-      "id": "chunking_chunker_semanticchunker_chunk_page",
-      "community": 5,
-      "norm_label": "._chunk_page()"
     },
     {
       "label": "datetime",
       "file_type": "code",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L68",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "datetime",
-      "community": 5,
+      "community": 2,
       "norm_label": "datetime"
     },
     {
       "label": "Chunk",
       "file_type": "code",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L68",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "chunk",
-      "community": 5,
+      "community": 2,
       "norm_label": "chunk"
-    },
-    {
-      "label": ".chunk()",
-      "file_type": "code",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L123",
-      "_origin": "ast",
-      "id": "chunking_chunker_semanticchunker_chunk",
-      "community": 5,
-      "norm_label": ".chunk()"
-    },
-    {
-      "label": "Chunk one page's segments in isolation \u2014 overlap never crosses a page         bo",
-      "file_type": "rationale",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L71",
-      "_origin": "ast",
-      "id": "chunking_chunker_rationale_71",
-      "community": 5,
-      "norm_label": "chunk one page's segments in isolation \u2014 overlap never crosses a page         bo"
     },
     {
       "label": "service.py",
@@ -735,7 +675,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "chunking_service",
-      "community": 5,
+      "community": 2,
       "norm_label": "service.py"
     },
     {
@@ -745,7 +685,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "chunking_service_chunkingservice",
-      "community": 3,
+      "community": 2,
       "norm_label": "chunkingservice"
     },
     {
@@ -782,7 +722,7 @@
       "label": ".chunk()",
       "file_type": "code",
       "source_file": "app/chunking/service.py",
-      "source_location": "L20",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "chunking_service_chunkingservice_chunk",
       "community": 2,
@@ -792,7 +732,7 @@
       "label": "ChunkedDocument",
       "file_type": "code",
       "source_file": "app/chunking/service.py",
-      "source_location": "L20",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "chunkeddocument",
       "community": 2,
@@ -804,59 +744,69 @@
       "source_file": "app/clients.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_app_clients_py",
-      "community": 1,
+      "id": "app_clients",
+      "community": 26,
       "norm_label": "clients.py"
     },
     {
       "label": "build_qdrant_client()",
       "file_type": "code",
       "source_file": "app/clients.py",
-      "source_location": "L7",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "app_clients_build_qdrant_client",
-      "community": 1,
+      "community": 26,
       "norm_label": "build_qdrant_client()"
     },
     {
       "label": "Settings",
       "file_type": "code",
       "source_file": "app/clients.py",
-      "source_location": "L7",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "app_clients_py_settings",
-      "community": 1,
+      "community": 26,
       "norm_label": "settings"
     },
     {
       "label": "AsyncQdrantClient",
       "file_type": "code",
       "source_file": "app/clients.py",
-      "source_location": "L7",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "app_clients_py_asyncqdrantclient",
-      "community": 1,
+      "community": 26,
       "norm_label": "asyncqdrantclient"
     },
     {
       "label": "build_openai_client()",
       "file_type": "code",
       "source_file": "app/clients.py",
-      "source_location": "L16",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "app_clients_build_openai_client",
-      "community": 1,
+      "community": 26,
       "norm_label": "build_openai_client()"
     },
     {
       "label": "AsyncOpenAI",
       "file_type": "code",
       "source_file": "app/clients.py",
-      "source_location": "L16",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "app_clients_py_asyncopenai",
-      "community": 1,
+      "community": 26,
       "norm_label": "asyncopenai"
+    },
+    {
+      "label": "build_groq_client()",
+      "file_type": "code",
+      "source_file": "app/clients.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "app_clients_build_groq_client",
+      "community": 26,
+      "norm_label": "build_groq_client()"
     },
     {
       "label": "config.py",
@@ -865,7 +815,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_config",
-      "community": 9,
+      "community": 26,
       "norm_label": "config.py"
     },
     {
@@ -875,7 +825,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_config_settings",
-      "community": 5,
+      "community": 2,
       "norm_label": "settings"
     },
     {
@@ -885,27 +835,27 @@
       "source_location": "",
       "_origin": "ast",
       "id": "basesettings",
-      "community": 5,
+      "community": 2,
       "norm_label": "basesettings"
     },
     {
       "label": ".is_prod()",
       "file_type": "code",
       "source_file": "app/config.py",
-      "source_location": "L70",
+      "source_location": "L72",
       "_origin": "ast",
       "id": "app_config_settings_is_prod",
-      "community": 5,
+      "community": 2,
       "norm_label": ".is_prod()"
     },
     {
       "label": "get_settings()",
       "file_type": "code",
       "source_file": "app/config.py",
-      "source_location": "L76",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "app_config_get_settings",
-      "community": 9,
+      "community": 26,
       "norm_label": "get_settings()"
     },
     {
@@ -975,7 +925,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "embedding_service",
-      "community": 9,
+      "community": 2,
       "norm_label": "service.py"
     },
     {
@@ -1375,7 +1325,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "ingestion_service_safe_filename",
-      "community": 3,
+      "community": 13,
       "norm_label": "_safe_filename()"
     },
     {
@@ -1495,7 +1445,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_app_logging_config_py",
-      "community": 9,
+      "community": 26,
       "norm_label": "logging_config.py"
     },
     {
@@ -1505,7 +1455,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "app_logging_config_requestidfilter",
-      "community": 9,
+      "community": 26,
       "norm_label": "requestidfilter"
     },
     {
@@ -1515,7 +1465,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "app_logging_config_requestidfilter_filter",
-      "community": 9,
+      "community": 26,
       "norm_label": ".filter()"
     },
     {
@@ -1525,7 +1475,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "logrecord",
-      "community": 9,
+      "community": 26,
       "norm_label": "logrecord"
     },
     {
@@ -1535,7 +1485,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "app_logging_config_configure_logging",
-      "community": 9,
+      "community": 26,
       "norm_label": "configure_logging()"
     },
     {
@@ -1545,7 +1495,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_main",
-      "community": 9,
+      "community": 26,
       "norm_label": "main.py"
     },
     {
@@ -1555,7 +1505,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_main_lifespan",
-      "community": 9,
+      "community": 26,
       "norm_label": "lifespan()"
     },
     {
@@ -1565,7 +1515,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "fastapi",
-      "community": 9,
+      "community": 26,
       "norm_label": "fastapi"
     },
     {
@@ -1575,7 +1525,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "app_main_create_app",
-      "community": 9,
+      "community": 26,
       "norm_label": "create_app()"
     },
     {
@@ -1602,7 +1552,7 @@
       "label": "parse_txt()",
       "file_type": "code",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "parsing_parsers_parse_txt",
       "community": 12,
@@ -1612,7 +1562,7 @@
       "label": "PageUnit",
       "file_type": "code",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "pageunit",
       "community": 12,
@@ -1622,7 +1572,7 @@
       "label": "parse_docx()",
       "file_type": "code",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L19",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "parsing_parsers_parse_docx",
       "community": 12,
@@ -1632,7 +1582,7 @@
       "label": "_extract_page_text()",
       "file_type": "code",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L35",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "parsing_parsers_extract_page_text",
       "community": 12,
@@ -1642,7 +1592,7 @@
       "label": "Page",
       "file_type": "code",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L35",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "page",
       "community": 12,
@@ -1652,7 +1602,7 @@
       "label": "parse_pdf()",
       "file_type": "code",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L93",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "parsing_parsers_parse_pdf",
       "community": 12,
@@ -1662,7 +1612,7 @@
       "label": "AsyncOpenAI",
       "file_type": "code",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L93",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "app_parsing_parsers_py_asyncopenai",
       "community": 12,
@@ -1672,7 +1622,7 @@
       "label": "_normalize_image()",
       "file_type": "code",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L110",
+      "source_location": "L127",
       "_origin": "ast",
       "id": "parsing_parsers_normalize_image",
       "community": 12,
@@ -1682,7 +1632,7 @@
       "label": "parse_image()",
       "file_type": "code",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L120",
+      "source_location": "L137",
       "_origin": "ast",
       "id": "parsing_parsers_parse_image",
       "community": 12,
@@ -1692,9 +1642,9 @@
       "label": "Faithful full-page text extraction that handles complex layouts.      PyMuPDF's",
       "file_type": "rationale",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L36",
+      "source_location": "L38",
       "_origin": "ast",
-      "id": "parsing_parsers_rationale_36",
+      "id": "parsing_parsers_rationale_38",
       "community": 12,
       "norm_label": "faithful full-page text extraction that handles complex layouts.      pymupdf's"
     },
@@ -1705,7 +1655,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "parsing_service",
-      "community": 5,
+      "community": 2,
       "norm_label": "service.py"
     },
     {
@@ -1715,7 +1665,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "parsing_service_hash_pages",
-      "community": 13,
+      "community": 2,
       "norm_label": "hash_pages()"
     },
     {
@@ -1725,7 +1675,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "app_parsing_service_py_parseddocument",
-      "community": 13,
+      "community": 2,
       "norm_label": "parseddocument"
     },
     {
@@ -1735,7 +1685,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "parsing_service_parsingservice",
-      "community": 1,
+      "community": 2,
       "norm_label": "parsingservice"
     },
     {
@@ -1785,7 +1735,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "parsing_service_parsingservice_parse",
-      "community": 13,
+      "community": 2,
       "norm_label": ".parse()"
     },
     {
@@ -1795,7 +1745,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "parsing_service_rationale_19",
-      "community": 13,
+      "community": 2,
       "norm_label": "per-page content fingerprint: {page number (as str) -> sha256 of page text}."
     },
     {
@@ -1804,7 +1754,7 @@
       "source_file": "app/parsing/vision.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_app_parsing_vision_py",
+      "id": "parsing_vision",
       "community": 12,
       "norm_label": "vision.py"
     },
@@ -1945,7 +1895,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_schemas",
-      "community": 5,
+      "community": 2,
       "norm_label": "schemas.py"
     },
     {
@@ -1955,7 +1905,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_schemas_chunkmetadata",
-      "community": 5,
+      "community": 2,
       "norm_label": "chunkmetadata"
     },
     {
@@ -1975,7 +1925,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "app_schemas_chunk",
-      "community": 5,
+      "community": 2,
       "norm_label": "chunk"
     },
     {
@@ -2055,7 +2005,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "app_schemas_parseddocument",
-      "community": 5,
+      "community": 2,
       "norm_label": "parseddocument"
     },
     {
@@ -2145,7 +2095,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "app_storage_storage",
-      "community": 26,
+      "community": 3,
       "norm_label": "storage"
     },
     {
@@ -2155,7 +2105,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "protocol",
-      "community": 26,
+      "community": 3,
       "norm_label": "protocol"
     },
     {
@@ -2165,7 +2115,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "app_storage_storage_ensure_collection",
-      "community": 26,
+      "community": 3,
       "norm_label": ".ensure_collection()"
     },
     {
@@ -2175,7 +2125,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "app_storage_storage_save",
-      "community": 26,
+      "community": 3,
       "norm_label": ".save()"
     },
     {
@@ -2185,7 +2135,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "app_storage_storage_put_blob",
-      "community": 26,
+      "community": 3,
       "norm_label": ".put_blob()"
     },
     {
@@ -2195,7 +2145,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "app_storage_storage_get_blob",
-      "community": 26,
+      "community": 3,
       "norm_label": ".get_blob()"
     },
     {
@@ -2205,7 +2155,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "app_storage_storage_list_blobs",
-      "community": 26,
+      "community": 3,
       "norm_label": ".list_blobs()"
     },
     {
@@ -2215,7 +2165,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "app_storage_storage_cleanup",
-      "community": 26,
+      "community": 3,
       "norm_label": ".cleanup()"
     },
     {
@@ -2365,7 +2315,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "store_qdrant_store",
-      "community": 5,
+      "community": 2,
       "norm_label": "qdrant_store.py"
     },
     {
@@ -2385,7 +2335,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "store_qdrant_store_vectorstore_init",
-      "community": 5,
+      "community": 2,
       "norm_label": ".__init__()"
     },
     {
@@ -2395,7 +2345,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_store_qdrant_store_py_asyncqdrantclient",
-      "community": 5,
+      "community": 2,
       "norm_label": "asyncqdrantclient"
     },
     {
@@ -2405,7 +2355,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_store_qdrant_store_py_settings",
-      "community": 5,
+      "community": 2,
       "norm_label": "settings"
     },
     {
@@ -2565,7 +2515,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "worker_celery_app",
-      "community": 9,
+      "community": 26,
       "norm_label": "celery_app.py"
     },
     {
@@ -2575,7 +2525,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "worker_tasks",
-      "community": 1,
+      "community": 26,
       "norm_label": "tasks.py"
     },
     {
@@ -2585,67 +2535,67 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "worker_tasks_process",
-      "community": 1,
+      "community": 26,
       "norm_label": "_process()"
     },
     {
       "label": "_update()",
       "file_type": "code",
       "source_file": "app/worker/tasks.py",
-      "source_location": "L49",
+      "source_location": "L51",
       "_origin": "ast",
       "id": "worker_tasks_update",
-      "community": 1,
+      "community": 26,
       "norm_label": "_update()"
     },
     {
       "label": "_mark_failed()",
       "file_type": "code",
       "source_file": "app/worker/tasks.py",
-      "source_location": "L110",
+      "source_location": "L114",
       "_origin": "ast",
       "id": "worker_tasks_mark_failed",
-      "community": 1,
+      "community": 26,
       "norm_label": "_mark_failed()"
     },
     {
       "label": "process_document()",
       "file_type": "code",
       "source_file": "app/worker/tasks.py",
-      "source_location": "L125",
+      "source_location": "L129",
       "_origin": "ast",
       "id": "worker_tasks_process_document",
-      "community": 1,
+      "community": 26,
       "norm_label": "process_document()"
     },
     {
       "label": "update_document()",
       "file_type": "code",
       "source_file": "app/worker/tasks.py",
-      "source_location": "L142",
+      "source_location": "L146",
       "_origin": "ast",
       "id": "worker_tasks_update_document",
-      "community": 1,
+      "community": 26,
       "norm_label": "update_document()"
     },
     {
       "label": "ping()",
       "file_type": "code",
       "source_file": "app/worker/tasks.py",
-      "source_location": "L159",
+      "source_location": "L163",
       "_origin": "ast",
       "id": "worker_tasks_ping",
-      "community": 1,
+      "community": 26,
       "norm_label": "ping()"
     },
     {
       "label": "Incremental re-index. The new file has already been written over the document's",
       "file_type": "rationale",
       "source_file": "app/worker/tasks.py",
-      "source_location": "L50",
+      "source_location": "L52",
       "_origin": "ast",
-      "id": "worker_tasks_rationale_50",
-      "community": 1,
+      "id": "worker_tasks_rationale_52",
+      "community": 26,
       "norm_label": "incremental re-index. the new file has already been written over the document's"
     },
     {
@@ -2825,7 +2775,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_scripts_cleanup_duplicates_py",
-      "community": 9,
+      "community": 26,
       "norm_label": "cleanup_duplicates.py"
     },
     {
@@ -2835,7 +2785,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "scripts_cleanup_duplicates_main",
-      "community": 9,
+      "community": 26,
       "norm_label": "main()"
     },
     {
@@ -2845,7 +2795,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_scripts_migrate_local_to_qdrant_py",
-      "community": 9,
+      "community": 26,
       "norm_label": "migrate_local_to_qdrant.py"
     },
     {
@@ -2855,7 +2805,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "scripts_migrate_local_to_qdrant_main",
-      "community": 9,
+      "community": 26,
       "norm_label": "main()"
     },
     {
@@ -2865,7 +2815,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_reset_data",
-      "community": 9,
+      "community": 26,
       "norm_label": "reset_data.py"
     },
     {
@@ -2875,7 +2825,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "scripts_reset_data_reset",
-      "community": 9,
+      "community": 26,
       "norm_label": "reset()"
     },
     {
@@ -2885,7 +2835,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_reset_data_rationale_1",
-      "community": 9,
+      "community": 26,
       "norm_label": "admin reset: wipes all documents and vectors directly via qdrant client. no http"
     },
     {
@@ -6135,21 +6085,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L12",
+      "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "chunking_chunker",
-      "target": "chunking_chunker_segment"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker",
-      "target": "chunking_chunker_semanticchunker"
+      "target": "chunking_chunker_fixedchunker",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -6165,85 +6105,12 @@
     {
       "relation": "uses",
       "confidence": "INFERRED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L8",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "chunking_chunker_segment",
-      "target": "app_config_settings"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L9",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "chunking_chunker_segment",
-      "target": "app_schemas_chunk"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L9",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "chunking_chunker_segment",
-      "target": "app_schemas_chunkmetadata"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L9",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "chunking_chunker_segment",
-      "target": "app_schemas_parseddocument"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L68",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk_page",
-      "target": "chunking_chunker_segment"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L51",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_hard_split",
-      "target": "chunking_chunker_segment"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L27",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_split_segments",
-      "target": "chunking_chunker_segment"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
       "source_file": "app/chunking/service.py",
       "source_location": "L4",
       "weight": 0.8,
-      "confidence_score": 0.5,
       "source": "app_chunking_service_py_ingestionservice",
-      "target": "chunking_chunker_semanticchunker"
+      "target": "chunking_chunker_fixedchunker",
+      "confidence_score": 0.5
     },
     {
       "relation": "uses",
@@ -6251,9 +6118,9 @@
       "source_file": "app/chunking/service.py",
       "source_location": "L4",
       "weight": 0.8,
-      "confidence_score": 0.5,
       "source": "app_chunking_service_py_settings",
-      "target": "chunking_chunker_semanticchunker"
+      "target": "chunking_chunker_fixedchunker",
+      "confidence_score": 0.5
     },
     {
       "relation": "uses",
@@ -6261,109 +6128,69 @@
       "source_file": "app/chunking/service.py",
       "source_location": "L4",
       "weight": 0.8,
-      "confidence_score": 0.5,
       "source": "chunkeddocument",
-      "target": "chunking_chunker_semanticchunker"
+      "target": "chunking_chunker_fixedchunker",
+      "confidence_score": 0.5
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L8",
+      "source_location": "L6",
       "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "chunking_chunker_semanticchunker",
-      "target": "app_config_settings"
+      "source": "chunking_chunker_fixedchunker",
+      "target": "app_config_settings",
+      "confidence_score": 0.5
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L9",
+      "source_location": "L7",
       "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "chunking_chunker_semanticchunker",
-      "target": "app_schemas_chunk"
+      "source": "chunking_chunker_fixedchunker",
+      "target": "app_schemas_chunk",
+      "confidence_score": 0.5
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L9",
+      "source_location": "L7",
       "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "chunking_chunker_semanticchunker",
-      "target": "app_schemas_chunkmetadata"
+      "source": "chunking_chunker_fixedchunker",
+      "target": "app_schemas_chunkmetadata",
+      "confidence_score": 0.5
     },
     {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L9",
+      "source_location": "L7",
       "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "chunking_chunker_semanticchunker",
-      "target": "app_schemas_parseddocument"
+      "source": "chunking_chunker_fixedchunker",
+      "target": "app_schemas_parseddocument",
+      "confidence_score": 0.5
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L60",
+      "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker",
-      "target": "chunking_chunker_semanticchunker_chunk"
+      "source": "chunking_chunker_fixedchunker",
+      "target": "chunking_chunker_fixedchunker_chunk",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L68",
+      "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker",
-      "target": "chunking_chunker_semanticchunker_chunk_page"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L51",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker",
-      "target": "chunking_chunker_semanticchunker_hard_split"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker",
-      "target": "chunking_chunker_semanticchunker_init"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker",
-      "target": "chunking_chunker_semanticchunker_ntokens"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L27",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker",
-      "target": "chunking_chunker_semanticchunker_split_segments"
+      "source": "chunking_chunker_fixedchunker",
+      "target": "chunking_chunker_fixedchunker_init",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -6372,9 +6199,9 @@
       "source_file": "app/chunking/service.py",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "chunking_service",
-      "target": "chunking_chunker_semanticchunker"
+      "target": "chunking_chunker_fixedchunker",
+      "confidence_score": 1.0
     },
     {
       "relation": "uses",
@@ -6382,9 +6209,9 @@
       "source_file": "app/chunking/service.py",
       "source_location": "L4",
       "weight": 0.8,
-      "confidence_score": 0.5,
       "source": "chunking_service_chunkingservice",
-      "target": "chunking_chunker_semanticchunker"
+      "target": "chunking_chunker_fixedchunker",
+      "confidence_score": 0.5
     },
     {
       "relation": "calls",
@@ -6395,18 +6222,18 @@
       "source_location": "L17",
       "weight": 1.0,
       "source": "chunking_service_chunkingservice_init",
-      "target": "chunking_chunker_semanticchunker"
+      "target": "chunking_chunker_fixedchunker"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L18",
+      "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_init",
-      "target": "app_chunking_chunker_py_settings"
+      "source": "chunking_chunker_fixedchunker_init",
+      "target": "app_chunking_chunker_py_settings",
+      "confidence_score": 1.0
     },
     {
       "relation": "uses",
@@ -6449,131 +6276,15 @@
       "target": "app_schemas_parseddocument"
     },
     {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L72",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk",
-      "target": "chunking_chunker_semanticchunker_ntokens"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L83",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk_page",
-      "target": "chunking_chunker_semanticchunker_ntokens"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L62",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk",
-      "target": "chunking_chunker_semanticchunker_split_segments"
-    },
-    {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L27",
+      "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_split_segments",
-      "target": "app_chunking_chunker_py_parseddocument"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L8",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "app_chunking_chunker_py_parseddocument",
-      "target": "app_config_settings"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L9",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "app_chunking_chunker_py_parseddocument",
-      "target": "app_schemas_chunk"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L9",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "app_chunking_chunker_py_parseddocument",
-      "target": "app_schemas_chunkmetadata"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L9",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "app_chunking_chunker_py_parseddocument",
-      "target": "app_schemas_parseddocument"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L60",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk",
-      "target": "app_chunking_chunker_py_parseddocument"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L63",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk",
-      "target": "chunking_chunker_semanticchunker_hard_split"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L71",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_rationale_71",
-      "target": "chunking_chunker_semanticchunker_chunk_page"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L135",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk",
-      "target": "chunking_chunker_semanticchunker_chunk_page"
+      "source": "chunking_chunker_fixedchunker_chunk",
+      "target": "app_chunking_chunker_py_parseddocument",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -6581,9 +6292,9 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L117",
+      "source_location": "L33",
       "weight": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk_page",
+      "source": "chunking_chunker_fixedchunker_chunk",
       "target": "app_schemas_chunkmetadata"
     },
     {
@@ -6591,22 +6302,62 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L68",
+      "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk_page",
-      "target": "chunk"
+      "source": "chunking_chunker_fixedchunker_chunk",
+      "target": "chunk",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/chunking/chunker.py",
-      "source_location": "L68",
+      "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk_page",
-      "target": "datetime"
+      "source": "chunking_chunker_fixedchunker_chunk",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "app/chunking/chunker.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "app_chunking_chunker_py_parseddocument",
+      "target": "app_config_settings"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "app/chunking/chunker.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "app_chunking_chunker_py_parseddocument",
+      "target": "app_schemas_chunk"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "app/chunking/chunker.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "app_chunking_chunker_py_parseddocument",
+      "target": "app_schemas_chunkmetadata"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "app/chunking/chunker.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "app_chunking_chunker_py_parseddocument",
+      "target": "app_schemas_parseddocument"
     },
     {
       "relation": "imports_from",
@@ -6617,17 +6368,6 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "app_schemas",
-      "target": "datetime"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L60",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk",
       "target": "datetime"
     },
     {
@@ -6720,28 +6460,6 @@
       "confidence_score": 0.5,
       "source": "chunk",
       "target": "app_schemas_parseddocument"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L60",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk",
-      "target": "chunk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/chunking/chunker.py",
-      "source_location": "L93",
-      "weight": 1.0,
-      "source": "chunking_chunker_semanticchunker_chunk",
-      "target": "app_schemas_chunkmetadata"
     },
     {
       "relation": "imports_from",
@@ -7230,21 +6948,31 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/clients.py",
-      "source_location": "L16",
+      "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_app_clients_py",
-      "target": "app_clients_build_openai_client"
+      "source": "app_clients",
+      "target": "app_clients_build_groq_client",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/clients.py",
-      "source_location": "L7",
+      "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_app_clients_py",
-      "target": "app_clients_build_qdrant_client"
+      "source": "app_clients",
+      "target": "app_clients_build_openai_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/clients.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "app_clients",
+      "target": "app_clients_build_qdrant_client",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -7253,9 +6981,64 @@
       "source_file": "app/clients.py",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_app_clients_py",
-      "target": "app_config"
+      "source": "app_clients",
+      "target": "app_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/clients.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_clients",
+      "target": "app_config_settings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "app_main",
+      "target": "app_clients",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/reset_data.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "scripts_reset_data",
+      "target": "app_clients",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/migrate_local_to_qdrant.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_scripts_migrate_local_to_qdrant_py",
+      "target": "app_clients",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/worker/tasks.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "worker_tasks",
+      "target": "app_clients",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -7383,6 +7166,17 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/clients.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "app_clients_build_groq_client",
+      "target": "app_clients_py_settings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/clients.py",
       "source_location": "L16",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7476,6 +7270,17 @@
       "target": "app_clients_build_openai_client"
     },
     {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/clients.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "app_clients_build_groq_client",
+      "target": "app_clients_py_asyncopenai",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "app/clients.py",
@@ -7484,6 +7289,39 @@
       "confidence_score": 0.5,
       "source": "app_clients_py_asyncopenai",
       "target": "app_config_settings"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/worker/tasks.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "worker_tasks",
+      "target": "app_clients_build_groq_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/worker/tasks.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "worker_tasks_process",
+      "target": "app_clients_build_groq_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/worker/tasks.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "worker_tasks_update",
+      "target": "app_clients_build_groq_client",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10767,11 +10605,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app/parsing/parsers.py",
-      "source_location": "L36",
+      "source_location": "L38",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "parsing_parsers_rationale_36",
-      "target": "parsing_parsers_extract_page_text"
+      "source": "parsing_parsers_rationale_38",
+      "target": "parsing_parsers_extract_page_text",
+      "confidence_score": 1.0
     },
     {
       "relation": "uses",
@@ -11169,9 +11007,9 @@
       "source_file": "app/parsing/vision.py",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_bsaisuryacharan_downloads_git_repos_student_rag_student_rag_app_parsing_vision_py",
-      "target": "parsing_vision_ocr_image"
+      "source": "parsing_vision",
+      "target": "parsing_vision_ocr_image",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -12349,9 +12187,9 @@
       "source_file": "app/store/qdrant_store.py",
       "source_location": "L187",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore",
-      "target": "store_qdrant_store_vectorstore_delete_orphans",
-      "confidence_score": 1.0
+      "target": "store_qdrant_store_vectorstore_delete_orphans"
     },
     {
       "relation": "method",
@@ -12389,9 +12227,9 @@
       "source_file": "app/store/qdrant_store.py",
       "source_location": "L52",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore",
-      "target": "store_qdrant_store_vectorstore_ensure_payload_indexes",
-      "confidence_score": 1.0
+      "target": "store_qdrant_store_vectorstore_ensure_payload_indexes"
     },
     {
       "relation": "method",
@@ -12399,9 +12237,9 @@
       "source_file": "app/store/qdrant_store.py",
       "source_location": "L164",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore",
-      "target": "store_qdrant_store_vectorstore_existing_chunk_hashes",
-      "confidence_score": 1.0
+      "target": "store_qdrant_store_vectorstore_existing_chunk_hashes"
     },
     {
       "relation": "method",
@@ -12439,9 +12277,9 @@
       "source_file": "app/store/qdrant_store.py",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore",
-      "target": "store_qdrant_store_vectorstore_text_hash",
-      "confidence_score": 1.0
+      "target": "store_qdrant_store_vectorstore_text_hash"
     },
     {
       "relation": "method",
@@ -12515,9 +12353,9 @@
       "source_file": "app/store/qdrant_store.py",
       "source_location": "L77",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore_build_points",
-      "target": "store_qdrant_store_vectorstore_text_hash",
-      "confidence_score": 1.0
+      "target": "store_qdrant_store_vectorstore_text_hash"
     },
     {
       "relation": "calls",
@@ -12526,9 +12364,9 @@
       "source_file": "app/store/qdrant_store.py",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore_ensure_collection",
-      "target": "store_qdrant_store_vectorstore_ensure_payload_indexes",
-      "confidence_score": 1.0
+      "target": "store_qdrant_store_vectorstore_ensure_payload_indexes"
     },
     {
       "relation": "calls",
@@ -12592,9 +12430,9 @@
       "source_file": "app/store/qdrant_store.py",
       "source_location": "L191",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore_delete_orphans",
-      "target": "store_qdrant_store_vectorstore_delete_document",
-      "confidence_score": 1.0
+      "target": "store_qdrant_store_vectorstore_delete_document"
     },
     {
       "relation": "calls",
@@ -12614,9 +12452,9 @@
       "source_file": "app/store/qdrant_store.py",
       "source_location": "L167",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore_existing_chunk_hashes",
-      "target": "app_store_qdrant_store_py_filter",
-      "confidence_score": 1.0
+      "target": "app_store_qdrant_store_py_filter"
     },
     {
       "relation": "calls",
@@ -12625,9 +12463,9 @@
       "source_file": "app/store/qdrant_store.py",
       "source_location": "L193",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_qdrant_store_vectorstore_delete_orphans",
-      "target": "app_store_qdrant_store_py_filter",
-      "confidence_score": 1.0
+      "target": "app_store_qdrant_store_py_filter"
     },
     {
       "relation": "calls",
@@ -12726,11 +12564,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app/worker/tasks.py",
-      "source_location": "L50",
+      "source_location": "L52",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "worker_tasks_rationale_50",
-      "target": "worker_tasks_update"
+      "source": "worker_tasks_rationale_52",
+      "target": "worker_tasks_update",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -12771,9 +12609,9 @@
       "source_file": "embed_gpu_benchmark.py",
       "source_location": "L77",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embed_gpu_benchmark",
-      "target": "embed_gpu_benchmark_build_chunks",
-      "confidence_score": 1.0
+      "target": "embed_gpu_benchmark_build_chunks"
     },
     {
       "relation": "contains",
@@ -12781,9 +12619,9 @@
       "source_file": "embed_gpu_benchmark.py",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embed_gpu_benchmark",
-      "target": "embed_gpu_benchmark_fetch_text",
-      "confidence_score": 1.0
+      "target": "embed_gpu_benchmark_fetch_text"
     },
     {
       "relation": "contains",
@@ -12791,9 +12629,9 @@
       "source_file": "embed_gpu_benchmark.py",
       "source_location": "L90",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embed_gpu_benchmark",
-      "target": "embed_gpu_benchmark_main",
-      "confidence_score": 1.0
+      "target": "embed_gpu_benchmark_main"
     },
     {
       "relation": "contains",
@@ -12801,9 +12639,9 @@
       "source_file": "embed_gpu_benchmark.py",
       "source_location": "L55",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embed_gpu_benchmark",
-      "target": "embed_gpu_benchmark_pick_device",
-      "confidence_score": 1.0
+      "target": "embed_gpu_benchmark_pick_device"
     },
     {
       "relation": "rationale_for",
@@ -12811,9 +12649,9 @@
       "source_file": "embed_gpu_benchmark.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embed_gpu_benchmark_rationale_1",
-      "target": "embed_gpu_benchmark",
-      "confidence_score": 1.0
+      "target": "embed_gpu_benchmark"
     },
     {
       "relation": "calls",
@@ -12822,9 +12660,9 @@
       "source_file": "embed_gpu_benchmark.py",
       "source_location": "L91",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embed_gpu_benchmark_main",
-      "target": "embed_gpu_benchmark_pick_device",
-      "confidence_score": 1.0
+      "target": "embed_gpu_benchmark_pick_device"
     },
     {
       "relation": "calls",
@@ -12833,9 +12671,9 @@
       "source_file": "embed_gpu_benchmark.py",
       "source_location": "L102",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embed_gpu_benchmark_main",
-      "target": "embed_gpu_benchmark_fetch_text",
-      "confidence_score": 1.0
+      "target": "embed_gpu_benchmark_fetch_text"
     },
     {
       "relation": "calls",
@@ -12844,9 +12682,9 @@
       "source_file": "embed_gpu_benchmark.py",
       "source_location": "L103",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embed_gpu_benchmark_main",
-      "target": "embed_gpu_benchmark_build_chunks",
-      "confidence_score": 1.0
+      "target": "embed_gpu_benchmark_build_chunks"
     },
     {
       "relation": "rationale_for",
@@ -12854,9 +12692,9 @@
       "source_file": "embed_gpu_benchmark.py",
       "source_location": "L78",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "embed_gpu_benchmark_rationale_78",
-      "target": "embed_gpu_benchmark_build_chunks",
-      "confidence_score": 1.0
+      "target": "embed_gpu_benchmark_build_chunks"
     },
     {
       "relation": "contains",
@@ -13994,5 +13832,5 @@
       "source_file": "codeDoc.md"
     }
   ],
-  "built_at_commit": "a038c48c06c38b734fd5ce73cef6674a8828cca8"
+  "built_at_commit": "c38daab643f10bd38d9a97a66eab8a92525ef9ac"
 }

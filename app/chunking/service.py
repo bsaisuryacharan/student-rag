@@ -1,7 +1,7 @@
 # app/chunking/service.py
 import logging
 
-from app.chunking.chunker import SemanticChunker
+from app.chunking.chunker import FixedChunker
 from app.config import Settings
 from app.ingestion.service import IngestionService
 from app.schemas import ChunkedDocument, DocumentStatus, ParsedDocument
@@ -14,9 +14,8 @@ class ChunkingService:
         self.settings = settings
         self.ingestion = ingestion
         self.storage = ingestion.storage
-        self.chunker = SemanticChunker(settings)
+        self.chunker = FixedChunker(settings)
 
-    # The chunk method is responsible for taking a document ID, retrieving the corresponding DocumentRecord, and then processing the parsed document to create chunks of text. It first checks if the document has been parsed by fetching the parsed blob from the cloud document store. If the blob exists, it reads the parsed document and uses the SemanticChunker to create chunks based on the content of the parsed document and the upload date. The resulting chunks are then saved as the chunks blob in the same store. Finally, it updates the status of the document to "chunked" and returns a ChunkedDocument object containing the chunks that were created.
     async def chunk(self, document_id: str) -> ChunkedDocument:
         record = await self.ingestion.get(document_id)
         if record is None:

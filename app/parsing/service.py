@@ -50,7 +50,8 @@ class ParsingService:
                 pages = await parsers.parse_pdf(
                     raw, openai=self.openai,
                     vision_model=self.settings.vision_model,
-                    min_chars=self.settings.pdf_text_min_chars)
+                    min_chars=self.settings.pdf_text_min_chars,
+                    ocr_concurrency=self.settings.vision_concurrency)
             elif ext in (".png", ".jpg", ".jpeg"):
                 pages = await parsers.parse_image(
                     raw, openai=self.openai,

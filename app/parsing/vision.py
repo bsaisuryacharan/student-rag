@@ -15,6 +15,7 @@ async def ocr_image(client: AsyncOpenAI, model: str, image_bytes: bytes,
     resp = await client.chat.completions.create(
         model=model,
         temperature=0,
+        timeout=60,
         messages=[{
             "role": "user",
             "content": [
